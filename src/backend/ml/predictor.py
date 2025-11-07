@@ -119,7 +119,7 @@ class WaterQualityPredictor:
             }
         }
 
-         def predict_microbial_risk(self, data: Dict[str, float]) -> Dict:
+    def predict_microbial_risk(self, data: Dict[str, float]) -> Dict:
         """
         Predict microbial contamination risk using proxy parameters
         A backup plan for now to get rid of stupid lab douradori
@@ -214,7 +214,7 @@ class WaterQualityPredictor:
             'coliform_probability': self._estimate_coliform_presence(data)
         }
 
-def _estimate_coliform_presence(self, data: Dict[str, float]) -> str:
+    def _estimate_coliform_presence(self, data: Dict[str, float]) -> str:
         """Estimate probability of coliform bacteria presence"""
         # This is a simplified heuristic model
         # Real detection requires lab culture tests
@@ -307,4 +307,23 @@ def _estimate_coliform_presence(self, data: Dict[str, float]) -> str:
             'risk_factors': risk_factors,
             'suspected_metals': self._identify_likely_metals(data)
         }
-    
+
+    def _identify_likely_metals(self, data: Dict[str, float]) -> List[str]:
+        """Identify which heavy metals are most likely present
+        If we want to do it precise ...test needed .."""
+        
+        suspects = []
+        
+        if data['ph'] < 6.5 and data['tds'] > 500:
+            suspects.append("Lead (from pipes)")
+            suspects.append("Copper (from plumbing)")
+        
+        if data['tds'] > 1000:
+            suspects.append("Arsenic (geological)")
+            suspects.append("Chromium")
+        
+        if data['ph'] < 6.0:
+            suspects.append("Cadmium")
+            suspects.append("Zinc")
+        
+        return suspects if suspects else ["No specific metals suspected"]
