@@ -214,3 +214,97 @@ class WaterQualityPredictor:
             'coliform_probability': self._estimate_coliform_presence(data)
         }
 
+def _estimate_coliform_presence(self, data: Dict[str, float]) -> str:
+        """Estimate probability of coliform bacteria presence"""
+        # This is a simplified heuristic model
+        # Real detection requires lab culture tests
+        
+        if (data['do'] < 3 and data['turbidity'] > 15 and 
+            data['temperature'] > 25):
+            return "Very High (>70%)"
+        elif (data['do'] < 5 and data['turbidity'] > 10):
+            return "High (40-70%)"
+        elif (data['do'] < 6 and data['turbidity'] > 5):
+            return "Moderate (20-40%)"
+        else:
+            return "Low (<20%)"
+    
+    def predict_heavy_metal_risk(self, data: Dict[str, float]) -> Dict:
+        """
+        Estimate heavy metal contamination risk using proxy parameters
+        
+        Key Indicators:
+        - High TDS → Dissolved metals
+        - Low pH → Increased metal solubility
+        - High conductivity (via TDS) → Ionic metals
+        """
+        risk_score = 0
+        risk_factors = []
+        
+        # TDS Analysis (direct correlation with dissolved metals)
+        if data['tds'] > 1500:
+            risk_score += 35
+            risk_factors.append("Very high TDS - significant dissolved metals likely")
+        elif data['tds'] > 800:
+            risk_score += 30
+            risk_factors.append("High TDS - elevated metal concentration possible")
+        elif data['tds'] > 500:
+            risk_score += 15
+            risk_factors.append("Moderate TDS - monitor for metals")
+        
+        # pH Analysis (acidic water dissolves more metals)
+        if data['ph'] < 6.0:
+            risk_score += 30
+            risk_factors.append("Acidic water - high metal dissolution from pipes/soil")
+        elif data['ph'] < 6.5:
+            risk_score += 25
+            risk_factors.append("Low pH - increased metal solubility")
+        elif data['ph'] < 7.0:
+            risk_score += 10
+            risk_factors.append("Slightly acidic - potential metal leaching")
+        
+        # Conductivity proxy.... (TDS × 0.64 ≈ µS/cm)
+        conductivity = data['tds'] * 0.64
+        if conductivity > 1000:
+            risk_score += 20
+            risk_factors.append("Very high conductivity - ionic metals present")
+        elif conductivity > 750:
+            risk_score += 15
+            risk_factors.append("High conductivity - potential ionic contamination")
+        
+        # Temperature effect on metal solubility
+        if data['temperature'] > 30:
+            risk_score += 5
+            risk_factors.append("High temperature increases metal solubility")
+        
+       
+        if data['ph'] < 6.5 and data['tds'] > 800:
+            risk_score += 15
+            risk_factors.append("Critical pH-TDS combination")
+        
+        if risk_score < 20:
+            level = 'Low'
+            recommendation = 'Likely safe, routine annual testing advised'
+            action = 'Continue normal monitoring'
+        elif risk_score < 40:
+            level = 'Moderate'
+            recommendation = 'Lab testing recommended within 3 months'
+            action = 'Schedule ICP-MS/AAS lab test for Lead, Arsenic, Mercury, Cadmium'
+        elif risk_score < 60:
+            level = 'High'
+            recommendation = 'Lab testing strongly recommended within 1 month'
+            action = 'URGENT: Professional water quality testing required'
+        else:
+            level = 'Critical'
+            recommendation = 'Immediate lab testing REQUIRED - avoid all consumption'
+            action = 'STOP USAGE: Emergency testing for heavy metals necessary'
+        
+        return {
+            'risk_score': min(risk_score, 100),
+            'level': level,
+            'recommendation': recommendation,
+            'action_required': action,
+            'risk_factors': risk_factors,
+            'suspected_metals': self._identify_likely_metals(data)
+        }
+    
