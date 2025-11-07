@@ -118,3 +118,99 @@ class WaterQualityPredictor:
                 'temperature': round(temp_score, 2)
             }
         }
+
+         def predict_microbial_risk(self, data: Dict[str, float]) -> Dict:
+        """
+        Predict microbial contamination risk using proxy parameters
+        A backup plan for now to get rid of stupid lab douradori
+        Logic as per my AIIMS friend :
+        - Low DO → Organic matter decomposition (bacterial activity)
+        - High Turbidity → Suspended particles (bacterial carriers)
+        - High Temperature → Bacterial growth acceleration
+        - pH extremes → Stress indicators
+        - High TDS → Potential contamination
+        """
+        risk_score = 0
+        risk_factors = []
+        
+        # D0 analysis
+        if data['do'] < 2:
+            risk_score += 35
+            risk_factors.append("Critical DO level - severe organic contamination")
+        elif data['do'] < 4:
+            risk_score += 30
+            risk_factors.append("Low DO - organic matter decomposition")
+        elif data['do'] < 6:
+            risk_score += 15
+            risk_factors.append("Moderate DO - monitor for contamination")
+        
+        # Turbidity 
+        if data['turbidity'] > 25:
+            risk_score += 30
+            risk_factors.append("Very high turbidity - high bacterial carrier potential")
+        elif data['turbidity'] > 10:
+            risk_score += 25
+            risk_factors.append("High turbidity - suspended particles present")
+        elif data['turbidity'] > 5:
+            risk_score += 15
+            risk_factors.append("Elevated turbidity - filtration recommended")
+        
+        # Temperature Analysis 
+        # (bacterial growth optimal 25-37°C) - I have to ask my AIIMS freind to get this  
+        if data['temperature'] > 35:
+            risk_score += 25
+            risk_factors.append("High temperature - accelerated bacterial growth")
+        elif data['temperature'] > 30:
+            risk_score += 20
+            risk_factors.append("Warm water - favorable for bacteria")
+        elif data['temperature'] > 25:
+            risk_score += 10
+            risk_factors.append("Moderate temperature - routine monitoring needed")
+        
+        # pH
+        if data['ph'] < 6.0 or data['ph'] > 9.0:
+            risk_score += 20
+            risk_factors.append("Extreme pH - stress indicator")
+        elif data['ph'] < 6.5 or data['ph'] > 8.5:
+            risk_score += 15
+            risk_factors.append("pH outside ideal range")
+        
+        # TDS 
+        if data['tds'] > 1500:
+            risk_score += 15
+            risk_factors.append("Very high TDS - contamination likely")
+        elif data['tds'] > 1000:
+            risk_score += 10
+            risk_factors.append("High TDS - increased contamination risk")
+        
+        # synergistic effects
+        if data['do'] < 4 and data['turbidity'] > 10:
+            risk_score += 10
+            risk_factors.append("Combined DO and turbidity risk")
+        
+        if data['temperature'] > 30 and data['do'] < 6:
+            risk_score += 10
+            risk_factors.append("Temperature-DO combination increases risk")
+        
+        # risk lvls
+        if risk_score < 20:
+            level = 'Low'
+            recommendation = 'Safe for irrigation and non-potable uses'
+        elif risk_score < 40:
+            level = 'Moderate'
+            recommendation = 'Monitor closely, consider basic filtration for sensitive uses'
+        elif risk_score < 60:
+            level = 'High'
+            recommendation = 'Filtration and treatment required before any use'
+        else:
+            level = 'Critical'
+            recommendation = 'DO NOT USE - Immediate treatment and lab testing required'
+        
+        return {
+            'risk_score': min(risk_score, 100),
+            'level': level,
+            'recommendation': recommendation,
+            'risk_factors': risk_factors,
+            'coliform_probability': self._estimate_coliform_presence(data)
+        }
+
