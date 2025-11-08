@@ -123,7 +123,7 @@ def train_heavy_metal_model():
 def main():
     """Train and save all models"""
     # Create models directory
-    os.makedirs('backend/app/ml/models', exist_ok=True)
+    os.makedirs('src/backend/ml/models', exist_ok=True)
     
     # Train models
     microbial_model = train_microbial_model()
@@ -132,8 +132,8 @@ def main():
     # Save models
     print("\n" + "="*50)
     print("Saving models...")
-    joblib.dump(microbial_model, 'backend/app/ml/models/microbial_rf.joblib')
-    joblib.dump(heavy_metal_model, 'backend/app/ml/models/heavy_metal_rf.joblib')
+    joblib.dump(microbial_model, 'src/backend/ml/models/microbial_rf.joblib')
+    joblib.dump(heavy_metal_model, 'src/backend/ml/models/heavy_metal_rf.joblib')
     
     print("\nModels saved successfully!")
     print("- backend/app/ml/models/microbial_rf.joblib")
