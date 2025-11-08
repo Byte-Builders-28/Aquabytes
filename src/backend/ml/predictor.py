@@ -327,3 +327,255 @@ class WaterQualityPredictor:
             suspects.append("Zinc")
         
         return suspects if suspects else ["No specific metals suspected"]
+
+    def analyze_irrigation_suitability(self, data: Dict[str, float]) -> Dict:
+        """
+        Analyze water suitability for agricultural irrigation
+        Based on FAO irrigation water quality guidelines
+        """
+        score = 100
+        issues = []
+        warnings = []
+        
+        # Salinity hazard (TDS/EC)
+        if data['tds'] > 2000:
+            score -= 40
+            issues.append("Severe salinity hazard - NOT suitable for most crops")
+            issues.append("Only extremely salt-tolerant crops may survive")
+        elif data['tds'] > 1500:
+            score -= 30
+            issues.append("High salinity - suitable only for tolerant crops")
+            warnings.append("Consider: Cotton, barley, sugar beet")
+        elif data['tds'] > 1000:
+            score -= 20
+            issues.append("Moderate salinity - avoid sensitive crops")
+            warnings.append("Avoid: Beans, strawberries, onions")
+        elif data['tds'] > 450:
+            score -= 10
+            warnings.append("Slight salinity - monitor crop response")
+        
+        # pH suitability
+        if data['ph'] < 5.5 or data['ph'] > 8.5:
+            score -= 25
+            issues.append(f"pH {data['ph']} outside acceptable range (5.5-8.5)")
+            issues.append("May cause nutrient lockout and toxicity")
+        elif data['ph'] < 6.0 or data['ph'] > 8.0:
+            score -= 15
+            warnings.append(f"pH {data['ph']} suboptimal - may need adjustment")
+        
+        # Turbidity (affects irrigation system)
+        if data['turbidity'] > 50:
+            score -= 20
+            issues.append("Very high turbidity - will clog drip irrigation")
+            warnings.append("Pre-filtration mandatory")
+        elif data['turbidity'] > 20:
+            score -= 10
+            warnings.append("High turbidity - use sprinkler instead of drip")
+        
+        # Microbial risk check
+        microbial = self.predict_microbial_risk(data)
+        if microbial['risk_score'] > 60:
+            score -= 25
+            issues.append("High microbial contamination risk")
+            warnings.append("Risk of crop pathogen transmission")
+        elif microbial['risk_score'] > 40:
+            score -= 15
+            warnings.append("Moderate contamination - avoid edible crops")
+        
+        # DO   ...(important for hydroponics)
+        if data['do'] < 4:
+            warnings.append("Low DO - may stress plant roots in hydroponics")
+        
+        # Determine crop suitability
+        suitable_crops = self._recommend_crops(data['tds'], data['ph'])
+        
+        return {
+            'score': max(0, score),
+            'suitable': score > 60,
+            'rating': (
+                'Excellent' if score > 85 else
+                'Good' if score > 70 else
+                'Fair' if score > 50 else
+                'Poor' if score > 30 else
+                'Unsuitable'
+            ),
+            'issues': issues if issues else ['Water suitable for irrigation'],
+            'warnings': warnings,
+            'suitable_crops': suitable_crops,
+            'irrigation_method': self._recommend_irrigation_method(data)
+        }
+    
+    def _recommend_crops(self, tds: float, ph: float) -> List[str]:
+        """Recommend suitable crops based on water quality"""
+        if tds < 450:
+            return ['All crops', 'Fruits', 'Vegetables', 'Flowers']
+        elif tds < 1000:
+            return ['Tolerant vegetables', 'Cereals', 'Fodder crops']
+        elif tds < 1500:
+            return ['Barley', 'Cotton', 'Sugar beet', 'Date palm']
+        elif tds < 2000:
+            return ['Cotton', 'Barley (limited)']
+        else:
+            return ['Not recommended for agriculture']
+    
+    def _recommend_irrigation_method(self, data: Dict[str, float]) -> str:
+        """Recommend best irrigation method based on water quality"""
+        if data['turbidity'] > 50:
+            return 'Flood/Surface irrigation (high turbidity)'
+        elif data['turbidity'] > 20:
+            return 'Sprinkler irrigation (moderate turbidity)'
+        elif data['tds'] > 1500:
+            return 'Drip with leaching (high salinity)'
+        else:
+            return 'Drip irrigation (optimal)'
+
+    def generate_alerts(self, results: Dict) -> List[Dict]:
+        """Generate actionable alerts based on analysis results"""
+        alerts = []
+        
+        # WQI alerts
+        if results['wqi']['wqi'] < 50:
+            alerts.append({
+                'type': 'water_quality',
+                'severity': 'high',
+                'message': f"Water Quality Index is {results['wqi']['category']} ({results['wqi']['wqi']})",
+                'action': 'Investigate contamination source immediately'
+            })
+        
+        # Microbial alerts
+        if results['microbial_risk']['level'] in ['High', 'Critical']:
+            alerts.append({
+                'type': 'microbial',
+                'severity': 'critical' if results['microbial_risk']['level'] == 'Critical' else 'high',
+                'message': f"Microbial contamination risk: {results['microbial_risk']['level']}",
+                'action': results['microbial_risk']['recommendation']
+            })
+        
+        # Heavy metal alerts
+        if results['heavy_metal_risk']['level'] in ['High', 'Critical']:
+            alerts.append({
+                'type': 'heavy_metal',
+                'severity': 'critical' if results['heavy_metal_risk']['level'] == 'Critical' else 'high',
+                'message': f"Heavy metal risk: {results['heavy_metal_risk']['level']}",
+                'action': results['heavy_metal_risk']['action_required']
+            })
+        
+        # Irrigation alerts
+        if not results['irrigation_suitable']['suitable']:
+            alerts.append({
+                'type': 'irrigation',
+                'severity': 'medium',
+                'message': 'Water not suitable for irrigation',
+                'action': 'Review crop selection and treatment options'
+            })
+        
+        # Parameter-specific alerts
+        sensor_data = results['sensor_data']
+        if sensor_data['ph'] < 6.5 or sensor_data['ph'] > 8.5:
+            alerts.append({
+                'type': 'parameter',
+                'severity': 'medium',
+                'message': f"pH out of range: {sensor_data['ph']}",
+                'action': 'Check for contamination or adjust pH if needed'
+            })
+        
+        if sensor_data['tds'] > 1200:
+            alerts.append({
+                'type': 'parameter',
+                'severity': 'medium',
+                'message': f"High TDS: {sensor_data['tds']} ppm",
+                'action': 'Consider water treatment or source replacement'
+            })
+        
+        return alerts
+    
+    def analyze_water_sample(self, sensor_data: Dict[str, float]) -> Dict:
+        """
+        Complete water quality analysis pipeline
+        Main entry point for all predictions
+        """
+        results = {
+            'timestamp': datetime.now().isoformat(),
+            'sensor_data': sensor_data,
+            'wqi': self.calculate_wqi(sensor_data),
+            'microbial_risk': self.predict_microbial_risk(sensor_data),
+            'heavy_metal_risk': self.predict_heavy_metal_risk(sensor_data),
+            'irrigation_suitable': self.analyze_irrigation_suitability(sensor_data)
+        }
+        
+        # Add rooftop harvesting specific recommendations
+        results['rooftop_harvest'] = self._analyze_rooftop_suitability(sensor_data, results)
+        
+        # Generate alerts
+        results['alerts'] = self.generate_alerts(results)
+        
+        # Add recommendations
+        results['recommendations'] = self._generate_recommendations(results)
+        
+        return results
+    
+    def _analyze_rooftop_suitability(self, data: Dict, full_results: Dict) -> Dict:
+        """Analyze if rooftop harvested water is suitable for reuse"""
+        purposes = {
+            'drinking': False,
+            'cooking': False,
+            'washing': False,
+            'irrigation': full_results['irrigation_suitable']['suitable'],
+            'toilet_flushing': True
+        }
+        
+        wqi = full_results['wqi']['wqi']
+        microbial_risk = full_results['microbial_risk']['risk_score']
+        
+        # Drinking water standards (very strict)
+        if wqi > 90 and microbial_risk < 20 and 6.5 <= data['ph'] <= 8.5 and data['tds'] < 500:
+            purposes['drinking'] = True
+            purposes['cooking'] = True
+        
+        # Washing/cleaning (moderate standards)
+        if wqi > 70 and microbial_risk < 40:
+            purposes['washing'] = True
+        
+        recommendations = []
+        if not purposes['drinking']:
+            recommendations.append("Install multi-stage filtration for potable use")
+        if not purposes['cooking']:
+            recommendations.append("Boil water before cooking use")
+        if microbial_risk > 40:
+            recommendations.append("UV sterilization recommended")
+        if data['turbidity'] > 5:
+            recommendations.append("Add sediment filter at first-flush stage")
+        
+        return {
+            'suitable_purposes': purposes,
+            'treatment_needed': not purposes['drinking'],
+            'recommendations': recommendations,
+            'estimated_quality': (
+                'Potable after basic filtration' if wqi > 80 and microbial_risk < 30 else
+                'Non-potable - treatment required' if wqi > 60 else
+                'Poor quality - extensive treatment needed'
+            )
+        }
+    
+    def _generate_recommendations(self, results: Dict) -> List[str]:
+        """Generate actionable recommendations"""
+        recommendations = []
+        
+        if results['wqi']['wqi'] < 70:
+            recommendations.append("Investigate and eliminate contamination sources")
+        
+        if results['microbial_risk']['risk_score'] > 40:
+            recommendations.append("Install UV sterilization system")
+            recommendations.append("Clean and disinfect storage tanks")
+        
+        if results['heavy_metal_risk']['risk_score'] > 40:
+            recommendations.append("Test water samples in certified lab")
+            recommendations.append("Consider reverse osmosis system")
+        
+        if results['sensor_data']['turbidity'] > 10:
+            recommendations.append("Install multi-stage filtration (sediment + activated carbon)")
+        
+        if results['sensor_data']['tds'] > 1000:
+            recommendations.append("Check for groundwater contamination or pipe corrosion")
+        
+        return recommendations
