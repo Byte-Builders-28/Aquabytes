@@ -6,7 +6,7 @@ from sqlalchemy.orm import Session
 
 from ml.predictor import WaterQualityPredictor
 from database.db import get_db, SensorReading, Prediction, Alert
-from models import SensorData, HistoricalDataQuery
+from app.models import SensorData, HistoricalDataQuery
 
 router = APIRouter()
 
