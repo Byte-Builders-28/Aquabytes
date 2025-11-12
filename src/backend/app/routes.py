@@ -41,21 +41,21 @@ async def health_check():
 # --- Predict ---
 @router.post("/api/v1/predict")
 async def predict_water_quality(data: SensorData):
-    try:
         sensor_dict = {
             'ph': data.ph,
             'tds': data.tds,
             'turbidity': data.turbidity,
             'temperature': data.temperature,
-            'dissolved_oxygen': data.do
+            'do': data.do
         }
 
         results = predictor.analyze_water_sample(sensor_dict)
         results['location'] = data.location
         results['device_id'] = data.device_id
 
-        # Store reading
+        # Stor4e reading
         reading_id = len(db.get_readings()) + 1
+
         reading_entry = {
             "id": reading_id,
             "timestamp": results["timestamp"],
@@ -70,6 +70,7 @@ async def predict_water_quality(data: SensorData):
                 "irrigation_suitable": results["irrigation_suitable"]["suitable"]
             }
         }
+
         db.add_reading(reading_entry)
 
         # Store critical alerts
@@ -88,9 +89,6 @@ async def predict_water_quality(data: SensorData):
 
         results["reading_id"] = reading_id
         return {"success": True, "data": results}
-
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Prediction error: {str(e)}")
 
 # --- Historical Data ---
 @router.post("/api/v1/history")
