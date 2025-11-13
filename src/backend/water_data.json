@@ -1,0 +1,45 @@
+{
+    "readings": [
+        {
+            "id": 1,
+            "timestamp": "2025-11-12T13:59:14.713321",
+            "device_id": "string",
+            "location": "string",
+            "sensor_data": {
+                "ph": 14.0,
+                "tds": 0.0,
+                "turbidity": 0.0,
+                "temperature": -10.0,
+                "do": 20.0
+            },
+            "prediction": {
+                "wqi": 73.0,
+                "wqi_category": "Good",
+                "microbial_risk_level": "Moderate",
+                "heavy_metal_risk_level": "Low",
+                "irrigation_suitable": true
+            }
+        },
+        {
+            "id": 2,
+            "timestamp": "2025-11-12T14:03:23.024760",
+            "device_id": "string",
+            "location": "string",
+            "sensor_data": {
+                "ph": 14.0,
+                "tds": 0.0,
+                "turbidity": 0.0,
+                "temperature": -10.0,
+                "do": 20.0
+            },
+            "prediction": {
+                "wqi": 73.0,
+                "wqi_category": "Good",
+                "microbial_risk_level": "Moderate",
+                "heavy_metal_risk_level": "Low",
+                "irrigation_suitable": true
+            }
+        }
+    ],
+    "alerts": []
+}
