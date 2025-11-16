@@ -15,10 +15,7 @@ def load_real_dataset():
     
     # Try different paths and encodings
     possible_paths = [
-        "water_dataX.csv",
         "src/backend/ml/datasets/water_dataX.csv",
-        "../../../water_dataX.csv",
-        "../../water_dataX.csv"
     ]
     
     df = None
@@ -221,8 +218,24 @@ def train_microbial_model(df):
         print("WARNING: Found NaN values in features, filling with mean...")
         X = X.fillna(X.mean())
     
+    # Check class distribution
+    class_counts = y.value_counts()
+    print(f"\nClass distribution:\n{class_counts}")
+    
+    # Remove classes with too few samples (< 2)
+    valid_classes = class_counts[class_counts >= 2].index
+    if len(valid_classes) < len(class_counts):
+        print(f"\nWARNING: Removing classes with < 2 samples: {class_counts[class_counts < 2].index.tolist()}")
+        mask = y.isin(valid_classes)
+        X = X[mask]
+        y = y[mask]
+        print(f"Samples after filtering: {len(X)}")
+    
+    # Only use stratify if we have enough samples per class
+    stratify_param = y if len(valid_classes) >= 2 and all(class_counts[valid_classes] >= 2) else None
+    
     X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=0.2, random_state=42, stratify=y
+        X, y, test_size=0.2, random_state=42, stratify=stratify_param
     )
     
     print("\n" + "="*60)
@@ -256,9 +269,9 @@ def train_microbial_model(df):
     
     print("\nFeature Importance:")
     print(importance_df)
-    print(1)
+    
     return model
-    print(2)
+
 
 def train_heavy_metal_model(df):
     """
@@ -273,8 +286,24 @@ def train_heavy_metal_model(df):
         print("WARNING: Found NaN values in features, filling with mean...")
         X = X.fillna(X.mean())
     
+    # Check class distribution
+    class_counts = y.value_counts()
+    print(f"\nClass distribution:\n{class_counts}")
+    
+    # Remove classes with too few samples (< 2)
+    valid_classes = class_counts[class_counts >= 2].index
+    if len(valid_classes) < len(class_counts):
+        print(f"\nWARNING: Removing classes with < 2 samples: {class_counts[class_counts < 2].index.tolist()}")
+        mask = y.isin(valid_classes)
+        X = X[mask]
+        y = y[mask]
+        print(f"Samples after filtering: {len(X)}")
+    
+    # Only use stratify if we have enough samples per class
+    stratify_param = y if len(valid_classes) >= 2 and all(class_counts[valid_classes] >= 2) else None
+    
     X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=0.2, random_state=42, stratify=y
+        X, y, test_size=0.2, random_state=42, stratify=stratify_param
     )
     
     print("\n" + "="*60)
