@@ -64,17 +64,29 @@ def load_real_dataset():
         'CONDUCTIVITY (µmhos/cm)': 'conductivity',
         'B.O.D. (mg/l)': 'bod',
         'NITRATENAN N+ NITRITENANN (mg/l)': 'nitrate',
-        'FECAL COLIFORM (MPN/100ml)Mean': 'fecal_coliform',
+        'FECAL COLIFORM (MPN/100ml)': 'fecal_coliform',
         'TOTAL COLIFORM (MPN/100ml)Mean': 'total_coliform'
     }
     
     # Rename columns
     df = df.rename(columns=column_mapping)
-    print(1)
-    # Select only the columns we need
+    
+    # Print renamed columns to verify
+    print("\nRenamed columns:")
+    print(df.columns.tolist())
+    
+    # Select only the columns we need (only if they exist after renaming)
     needed_columns = ['temperature', 'do', 'ph', 'conductivity', 'bod', 'nitrate', 'fecal_coliform', 'total_coliform']
-    print(2)
-    df = df[needed_columns]
+    
+    # Check which columns are actually present
+    available_needed = [col for col in needed_columns if col in df.columns]
+    missing_columns = [col for col in needed_columns if col not in df.columns]
+    
+    if missing_columns:
+        print(f"\nWARNING: Missing columns: {missing_columns}")
+        print("Will use only available columns...")
+    
+    df = df[available_needed]
     
     # Handle missing values (NAN strings and actual NaN)
     print("\nHandling missing values...")
@@ -116,7 +128,7 @@ def load_real_dataset():
     # We can estimate it from other parameters or use random values
     print("\nGenerating synthetic turbidity values (not in CSV)...")
     np.random.seed(42)
-
+    
     # Turbidity tends to correlate with BOD and total coliform
     # Higher BOD and coliform = higher turbidity
     df['turbidity'] = (
@@ -134,7 +146,7 @@ def load_real_dataset():
     print(f"✓ Total records: {len(df)}")
     print("\nDataset statistics:")
     print(df.describe())
-
+    
     return df
 
 
@@ -244,9 +256,9 @@ def train_microbial_model(df):
     
     print("\nFeature Importance:")
     print(importance_df)
-    
+    print(1)
     return model
-
+    print(2)
 
 def train_heavy_metal_model(df):
     """
