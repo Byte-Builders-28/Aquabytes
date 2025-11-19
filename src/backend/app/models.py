@@ -1,18 +1,24 @@
 from pydantic import BaseModel, Field
-from typing import Optional
-from datetime import datetime
+from typing import Optional, List, Dict
 
 class SensorData(BaseModel):
-    ph: float = Field(..., ge=0, le=14, description="pH value (0-14)")
-    tds: float = Field(..., ge=0, description="Total Dissolved Solids in ppm")
-    turbidity: float = Field(..., ge=0, description="Turbidity in NTU")
-    temperature: float = Field(..., ge=-10, le=60, description="Temperature in Celsius")
-    do: float = Field(..., ge=0, le=20, description="Dissolved Oxygen in mg/L", alias="dissolved_oxygen")
+    ph: float = Field(..., ge=0, le=14)
+    tds: float = Field(..., ge=0)
+    turbidity: float = Field(..., ge=0)
+    temperature: float = Field(..., ge=-10, le=60)
+    do: float = Field(..., ge=0, le=20)
     location: Optional[str] = None
-    device_id: Optional[str] = None
+    device_id: Optional[str] = "unknown"
 
-class HistoricalDataQuery(BaseModel):
-    device_id: Optional[str] = None
-    start_date: Optional[datetime] = None
-    end_date: Optional[datetime] = None
-    limit: int = Field(default=100, le=1000)
+    class Config:
+        json_schema_extra = {
+            "example": {
+                "ph": 7.2,
+                "tds": 350,
+                "turbidity": 2.5,
+                "temperature": 25,
+                "do": 7.5,
+                "location": "Rooftop Tank 1",
+                "device_id": "ESP32_001"
+            }
+        }

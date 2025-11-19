@@ -1,203 +1,389 @@
-from fastapi import APIRouter, HTTPException
-from typing import Dict, List
-from datetime import datetime, timedelta
-
+from fastapi import APIRouter, HTTPException, Query
+from datetime import datetime
+from typing import List, Dict, Optional
+from app.models import SensorData
 from ml.predictor import WaterQualityPredictor
 from utils.json import JSONDB
-from app.models import SensorData, HistoricalDataQuery
 
 router = APIRouter()
 
-# Predictor instance
 predictor = WaterQualityPredictor()
+db = JSONDB("database.json")
 
-# JSONDB instance
-db = JSONDB("water_data.json")
-
-# --- Root & Health ---
+# -------------------------------------------------------------
+# ROOT
+# -------------------------------------------------------------
 @router.get("/")
 async def root():
     return {
-        "message": "Water Quality ML Backend API",
-        "version": "1.0.0",
-        "endpoints": {
-            "predict": "/api/v1/predict",
-            "history": "/api/v1/history",
-            "alerts": "/api/v1/alerts",
-            "health": "/health"
-        }
+        "message": "Water Quality ML Backend API (JSON DB)",
+        "version": "2.0.0",
+        "status": "operational",
+        "db_file": "database.json"
     }
 
+# -------------------------------------------------------------
+# HEALTH CHECK
+# -------------------------------------------------------------
 @router.get("/health")
 async def health_check():
+    readings = db.get_readings()
+    alerts = db.get_alerts()
     return {
         "status": "healthy",
-        "model": "loaded",
-        "timestamp": datetime.now().isoformat(),
-        "total_readings": len(db.get_readings()),
-        "total_alerts": len(db.get_alerts())
+        "timestamp": datetime.utcnow().isoformat(),
+        "total_readings": len(readings),
+        "total_alerts": len(alerts)
     }
 
-# --- Predict ---
-@router.post("/api/v1/predict")
+# -------------------------------------------------------------
+# PREDICT AND STORE READING
+# -------------------------------------------------------------
+@router.post("/api/v1/predict_manual")
 async def predict_water_quality(data: SensorData):
-        sensor_dict = {
-            'ph': data.ph,
-            'tds': data.tds,
-            'turbidity': data.turbidity,
-            'temperature': data.temperature,
-            'do': data.do
+    try:
+        sensor = {
+            "ph": data.ph,
+            "tds": data.tds,
+            "turbidity": data.turbidity,
+            "temperature": data.temperature,
+            "do": data.do
         }
 
-        results = predictor.analyze_water_sample(sensor_dict)
-        results['location'] = data.location
-        results['device_id'] = data.device_id
+        result = predictor.analyze_water_sample(sensor)
+        result["location"] = data.location
+        result["device_id"] = data.device_id
 
-        # Stor4e reading
-        reading_id = len(db.get_readings()) + 1
+        readings = db.get_readings()
+        reading_id = len(readings) + 1
 
-        reading_entry = {
+        entry = {
             "id": reading_id,
-            "timestamp": results["timestamp"],
-            "device_id": data.device_id or "unknown",
+            "timestamp": datetime.utcnow().isoformat(),
+            "device_id": data.device_id,
             "location": data.location,
-            "sensor_data": sensor_dict,
+            "sensor_data": sensor,
             "prediction": {
-                "wqi": results["wqi"]["wqi"],
-                "wqi_category": results["wqi"]["category"],
-                "microbial_risk_level": results["microbial_risk"]["level"],
-                "heavy_metal_risk_level": results["heavy_metal_risk"]["level"],
-                "irrigation_suitable": results["irrigation_suitable"]["suitable"]
+                "wqi": result["wqi"]["wqi"],
+                "wqi_category": result["wqi"]["category"],
+                "microbial_risk_level": result["microbial_risk"]["level"],
+                "heavy_metal_risk_level": result["heavy_metal_risk"]["level"],
+                "irrigation_suitable": result["irrigation_suitable"]["suitable"]
             }
         }
 
-        db.add_reading(reading_entry)
+        db.add_reading(entry)
 
-        # Store critical alerts
-        for alert in results.get("alerts", []):
-            if alert.get("severity") in ["high", "critical"]:
-                alert_entry = {
-                    "id": len(db.get_alerts()) + 1,
-                    "device_id": data.device_id or "unknown",
-                    "alert_type": alert.get("type"),
-                    "severity": alert.get("severity"),
-                    "message": alert.get("message"),
-                    "created_at": datetime.now().isoformat(),
+        # Store alerts
+        for alert in result["alerts"]:
+            if alert["severity"] in ["high", "critical"]:
+                alerts = db.get_alerts()
+                alert_id = len(alerts) + 1
+                db.add_alert({
+                    "id": alert_id,
+                    "device_id": data.device_id,
+                    "alert_type": alert["type"],
+                    "severity": alert["severity"],
+                    "message": alert["message"],
+                    "created_at": datetime.utcnow().isoformat(),
                     "is_resolved": False
-                }
-                db.add_alert(alert_entry)
+                })
 
-        results["reading_id"] = reading_id
-        return {"success": True, "data": results}
+        return {"success": True, "data": result}
 
-# --- Historical Data ---
-@router.post("/api/v1/history")
-async def get_historical_data(query: HistoricalDataQuery):
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@router.post("/api/v1/predict/latest/{device_id}")
+async def predict_latest(device_id: str):
     try:
         readings = db.get_readings()
-        if query.device_id:
-            readings = [r for r in readings if r["device_id"] == query.device_id]
-        if query.start_date:
-            readings = [r for r in readings if r["timestamp"] >= query.start_date.isoformat()]
-        if query.end_date:
-            readings = [r for r in readings if r["timestamp"] <= query.end_date.isoformat()]
 
-        readings = list(reversed(readings))[:query.limit]
-        return {"success": True, "count": len(readings), "data": readings}
+        # Filter readings for this device
+        device_readings = [r for r in readings if r.get("device_id") == device_id]
 
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Query error: {str(e)}")
+        if not device_readings:
+            raise HTTPException(status_code=404, detail="No readings found for device")
 
-# --- Alerts ---
-@router.get("/api/v1/alerts/{device_id}")
-async def get_device_alerts(device_id: str, resolved: bool = False):
-    try:
-        alerts = db.get_alerts()
-        filtered = [a for a in alerts if a["device_id"] == device_id]
-        if not resolved:
-            filtered = [a for a in filtered if not a["is_resolved"]]
-        filtered.sort(key=lambda x: x["created_at"], reverse=True)
-        return {"success": True, "device_id": device_id, "count": len(filtered), "alerts": filtered[:50]}
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Alert retrieval error: {str(e)}")
+        # Get latest entry
+        latest = device_readings[-1]
+        sensor = latest.get("sensor_data")
 
-@router.put("/api/v1/alerts/{alert_id}/resolve")
-async def resolve_alert(alert_id: int):
-    try:
-        alert = next((a for a in db.get_alerts() if a["id"] == alert_id), None)
-        if not alert:
-            raise HTTPException(status_code=404, detail="Alert not found")
-        db.update_alert(alert_id, {"is_resolved": True, "resolved_at": datetime.now().isoformat()})
-        return {"success": True, "message": "Alert resolved", "alert_id": alert_id}
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Resolution error: {str(e)}")
+        if not sensor:
+            raise HTTPException(status_code=400, detail="Latest entry has no sensor_data")
 
-# --- Dashboard ---
-def calculate_trends(readings: List[Dict]) -> Dict:
-    if len(readings) < 2:
-        return {"status": "insufficient_data"}
-    mid = len(readings)//2
-    first_half = readings[:mid]
-    second_half = readings[mid:]
-    trends = {}
-    for param in ["ph", "tds", "turbidity", "temperature", "dissolved_oxygen"]:
-        avg_first = sum(r["sensor_data"][param] for r in first_half)/len(first_half)
-        avg_second = sum(r["sensor_data"][param] for r in second_half)/len(second_half)
-        change_pct = ((avg_second - avg_first)/avg_first)*100 if avg_first > 0 else 0
-        trends[param] = {
-            "direction": "increasing" if change_pct > 5 else "decreasing" if change_pct < -5 else "stable",
-            "change_percent": round(change_pct, 2)
+        # Run prediction
+        result = predictor.analyze_water_sample(sensor)
+
+        updated_prediction = {
+            "wqi": result["wqi"]["wqi"],
+            "wqi_category": result["wqi"]["category"],
+            "microbial_risk_level": result["microbial_risk"]["level"],
+            "heavy_metal_risk_level": result["heavy_metal_risk"]["level"],
+            "irrigation_suitable": result["irrigation_suitable"]["suitable"]
         }
-    return trends
 
-@router.get("/api/v1/dashboard/{device_id}")
-async def get_dashboard_data(device_id: str):
-    try:
-        readings = [r for r in db.get_readings() if r["device_id"] == device_id]
-        if not readings:
-            raise HTTPException(status_code=404, detail="No data found for device")
-        latest = readings[-1]
-        recent_24h = [r for r in readings if datetime.fromisoformat(r["timestamp"]) >= datetime.utcnow() - timedelta(days=1)]
-        trends = calculate_trends(recent_24h)
-        active_alerts = [a for a in db.get_alerts() if a["device_id"] == device_id and not a["is_resolved"]]
+        # Update DB reading
+        db.update_reading(latest["id"], {
+            "prediction": updated_prediction
+        })
 
         return {
             "success": True,
             "device_id": device_id,
-            "latest_reading": latest,
-            "prediction": latest.get("prediction"),
-            "trends": trends,
-            "active_alerts": active_alerts,
-            "readings_24h": len(recent_24h)
+            "timestamp": latest["timestamp"],
+            "sensor_data": sensor,
+            "data" : result
         }
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Dashboard error: {str(e)}")
 
-# --- Stats Summary ---
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+# --------------------------
+# IoT: Register Device
+# --------------------------
+@router.post("/iot/register")
+def register_device(payload: dict):
+    device_id = payload.get("device_id")
+    location = payload.get("location", "unknown")
+
+    if not device_id:
+        raise HTTPException(status_code=400, detail="device_id is required")
+
+    readings = db.get_readings()
+    reading_id = len(readings) + 1
+
+    entry = {
+        "id": reading_id,
+        "timestamp": datetime.utcnow().isoformat(),
+        "device_id": device_id,
+        "location": location,
+        "registered_at": datetime.utcnow().isoformat()
+    }
+
+    db.add_reading(entry)
+
+    return {"status": "device_registered", "device_id": device_id, "id": reading_id}
+
+
+
+# --------------------------
+# IoT: Device Heartbeat / Ping
+# --------------------------
+@router.post("/iot/ping")
+def iot_ping(payload: dict):
+    device_id = payload.get("device_id")
+
+    if not device_id:
+        raise HTTPException(status_code=400, detail="device_id is required")
+
+    heartbeat = {
+        "device_id": device_id,
+        "timestamp": str(datetime.utcnow()),
+        "status": "online"
+    }
+
+    # Save as alert entry for tracking device activity
+    db.add_alert({
+        "id": int(datetime.utcnow().timestamp()),
+        "device_id": device_id,
+        "alert_type": "heartbeat",
+        "severity": "low",
+        "message": "Device ping received",
+        "is_resolved": False,
+        "created_at": str(datetime.utcnow()),
+        "resolved_at": None
+    })
+
+    return {"status": "pong", "device_id": device_id, "received": heartbeat}
+
+
+# -------------------------------------------------------------
+# GET HISTORY
+# -------------------------------------------------------------
+@router.get("/api/v1/history")
+async def get_historical_data(device_id: Optional[str] = None, limit: int = 100):
+    try:
+        readings = db.get_readings()
+        if device_id:
+            readings = [r for r in readings if r["device_id"] == device_id]
+
+        return {
+            "success": True,
+            "count": min(len(readings), limit),
+            "data": list(reversed(readings))[:limit]
+        }
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+# -------------------------------------------------------------
+# GET ALERTS
+# -------------------------------------------------------------
+@router.get("/api/v1/alerts/{device_id}")
+async def get_alerts(device_id: str, resolved: bool = False):
+    try:
+        alerts = db.get_alerts()
+        result = [
+            a for a in alerts
+            if a["device_id"] == device_id and (resolved or not a["is_resolved"])
+        ]
+
+        result.sort(key=lambda x: x["created_at"], reverse=True)
+        return {"success": True, "alerts": result[:50]}
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+# -------------------------------------------------------------
+# RESOLVE ALERT
+# -------------------------------------------------------------
+@router.put("/api/v1/alerts/{alert_id}/resolve")
+async def resolve_alert(alert_id: int):
+    try:
+        db.update_alert(alert_id, {
+            "is_resolved": True,
+            "resolved_at": datetime.utcnow().isoformat()
+        })
+        return {"success": True, "alert_id": alert_id}
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+# -------------------------------------------------------------
+# DASHBOARD DATA
+# -------------------------------------------------------------
+@router.get("/api/v1/dashboard/{device_id}")
+async def get_dashboard_data(device_id: str):
+    try:
+        readings = db.get_readings()
+        device_data = [r for r in readings if r["device_id"] == device_id]
+        if not device_data:
+            raise HTTPException(status_code=404, detail="No data found")
+
+        latest = device_data[-1]
+        recent = device_data[-10:]
+        trends = calculate_trends(recent)
+
+        alerts = db.get_alerts()
+        active = [
+            a for a in alerts if a["device_id"] == device_id and not a["is_resolved"]
+        ]
+
+        return {
+            "success": True,
+            "latest_reading": {
+                "timestamp": latest["timestamp"],
+                **latest["sensor_data"]
+            },
+            "prediction": latest["prediction"],
+            "trends": trends,
+            "active_alerts": active,
+            "total_readings": len(device_data)
+        }
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+# -------------------------------------------------------------
+# TRENDS
+# -------------------------------------------------------------
+def calculate_trends(readings: List[Dict]) -> Dict:
+    if len(readings) < 2:
+        return {"status": "insufficient_data"}
+
+    mid = len(readings) // 2
+    first, second = readings[:mid], readings[mid:]
+
+    def avg(items, key):
+        v = [i["sensor_data"][key] for i in items]
+        return sum(v) / len(v)
+
+    trends = {}
+    params = ["ph", "tds", "turbidity", "temperature", "do"]
+
+    for p in params:
+        a1, a2 = avg(first, p), avg(second, p)
+        if a1 == 0:
+            continue
+        pct = ((a2 - a1) / a1) * 100
+        trends[p] = {
+            "direction": "increasing" if pct > 5 else "decreasing" if pct < -5 else "stable",
+            "change_percent": round(pct, 2)
+        }
+
+    return trends
+
+# -------------------------------------------------------------
+# STATS SUMMARY
+# -------------------------------------------------------------
 @router.get("/api/v1/stats/summary")
 async def get_system_summary():
     try:
         readings = db.get_readings()
         alerts = db.get_alerts()
-        total_readings = len(readings)
-        total_devices = len(set(r["device_id"] for r in readings))
-        active_alerts = sum(1 for a in alerts if not a["is_resolved"])
-        recent_predictions = [r["prediction"]["wqi"] for r in readings[-100:] if r.get("prediction")]
-        avg_wqi = sum(recent_predictions)/len(recent_predictions) if recent_predictions else 0
-        wqi_distribution = {}
-        for r in readings[-100:]:
-            if r.get("prediction"):
-                cat = r["prediction"]["wqi_category"]
-                wqi_distribution[cat] = wqi_distribution.get(cat, 0)+1
+
+        total = len(readings)
+        unique = len(set(r["device_id"] for r in readings))
+        active = sum(1 for a in alerts if not a["is_resolved"])
+
+        if total:
+            last100 = readings[-100:]
+            avg_wqi = sum(r["prediction"]["wqi"] for r in last100) / len(last100)
+
+            dist = {}
+            for r in last100:
+                c = r["prediction"]["wqi_category"]
+                dist[c] = dist.get(c, 0) + 1
+
+        else:
+            avg_wqi = 0
+            dist = {}
+
         return {
             "success": True,
             "statistics": {
-                "total_readings": total_readings,
-                "total_devices": total_devices,
-                "active_alerts": active_alerts,
+                "total_readings": total,
+                "unique_devices": unique,
+                "active_alerts": active,
                 "average_wqi": round(avg_wqi, 2),
-                "wqi_distribution": wqi_distribution
+                "wqi_distribution": dist
             }
         }
+
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Stats error: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+# -------------------------------------------------------------
+# CLEAR DATA
+# -------------------------------------------------------------
+@router.delete("/api/v1/clear-data")
+async def clear_all_data():
+    db.clear_all()
+    return {"success": True, "message": "All data cleared"}
+
+# -------------------------------------------------------------
+# BATCH PREDICTION
+# -------------------------------------------------------------
+@router.post("/api/v1/predict/batch")
+async def batch_predict(data_list: List[SensorData]):
+    try:
+        results = []
+        for data in data_list:
+            sensor = {
+                "ph": data.ph,
+                "tds": data.tds,
+                "turbidity": data.turbidity,
+                "temperature": data.temperature,
+                "do": data.do
+            }
+            pred = predictor.analyze_water_sample(sensor)
+            pred["device_id"] = data.device_id
+            pred["location"] = data.location
+            results.append(pred)
+
+        return {"success": True, "count": len(results), "data": results}
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
