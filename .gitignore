@@ -77,6 +77,3 @@ dmypy.json
 
 # Logs
 *.log
-
-# JSONDB or data files you may want to ignore
-*.json

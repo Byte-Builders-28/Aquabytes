@@ -1,0 +1,65 @@
+{
+    "readings": [
+        {
+            "id": 1,
+            "timestamp": "2025-11-19T08:54:11.165211",
+            "device_id": "ESP32_001",
+            "location": "Rooftop Tank 1",
+            "sensor_data": {
+                "ph": 7.2,
+                "tds": 350.0,
+                "turbidity": 2.5,
+                "temperature": 25.0,
+                "do": 7.5
+            },
+            "prediction": {
+                "wqi": 88.29,
+                "wqi_category": "Good",
+                "microbial_risk_level": "Low",
+                "heavy_metal_risk_level": "Low",
+                "irrigation_suitable": true
+            }
+        },
+        {
+            "id": 2,
+            "timestamp": "2025-11-19T09:06:00.139330",
+            "device_id": "ESP32_001",
+            "location": "Rooftop Tank 1",
+            "sensor_data": {
+                "ph": 7.2,
+                "tds": 350.0,
+                "turbidity": 2.5,
+                "temperature": 25.0,
+                "do": 7.5
+            },
+            "prediction": {
+                "wqi": 88.29,
+                "wqi_category": "Good",
+                "microbial_risk_level": "Low",
+                "heavy_metal_risk_level": "Low",
+                "irrigation_suitable": true
+            }
+        },
+        {
+            "id": 3,
+            "timestamp": "2025-11-19T09:08:00.114310",
+            "device_id": "ESP32_001",
+            "location": "Rooftop Tank 1",
+            "sensor_data": {
+                "ph": 7.2,
+                "tds": 350.0,
+                "turbidity": 2.5,
+                "temperature": 25.0,
+                "do": 7.5
+            },
+            "prediction": {
+                "wqi": 88.29,
+                "wqi_category": "Good",
+                "microbial_risk_level": "Low",
+                "heavy_metal_risk_level": "Low",
+                "irrigation_suitable": true
+            }
+        }
+    ],
+    "alerts": []
+}
