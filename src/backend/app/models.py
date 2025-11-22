@@ -9,6 +9,7 @@ class SensorData(BaseModel):
     do: float = Field(..., ge=0, le=20)
     location: Optional[str] = None
     device_id: Optional[str] = "unknown"
+    
 
     class Config:
         json_schema_extra = {
@@ -22,3 +23,8 @@ class SensorData(BaseModel):
                 "device_id": "ESP32_001"
             }
         }
+
+class PingResponse(BaseModel):
+    status: str
+    device_id: str
+

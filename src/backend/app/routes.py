@@ -1,9 +1,11 @@
-from fastapi import APIRouter, HTTPException, Query
+from fastapi import APIRouter, HTTPException, Query, status
 from datetime import datetime
 from typing import List, Dict, Optional
-from app.models import SensorData
+from app.models import SensorData, PingResponse
 from ml.predictor import WaterQualityPredictor
 from utils.json import JSONDB
+
+import time
 
 router = APIRouter()
 
@@ -143,28 +145,24 @@ async def predict_latest(device_id: str):
 # --------------------------
 # IoT: Register Device
 # --------------------------
-@router.post("/iot/register")
-def register_device(payload: dict):
-    device_id = payload.get("device_id")
-    location = payload.get("location", "unknown")
-
-    if not device_id:
-        raise HTTPException(status_code=400, detail="device_id is required")
+@router.post("/iot/register", status_code=status.HTTP_201_CREATED)
+def register_device(payload: SensorData):
+    device_id = payload.device_id or "unknown"
+    sensor_data = payload.dict()
 
     readings = db.get_readings()
     reading_id = len(readings) + 1
 
     entry = {
         "id": reading_id,
-        "timestamp": datetime.utcnow().isoformat(),
         "device_id": device_id,
-        "location": location,
-        "registered_at": datetime.utcnow().isoformat()
+        "sensor_data": sensor_data,
+        "timestamp": int(time.time())
     }
 
     db.add_reading(entry)
 
-    return {"status": "device_registered", "device_id": device_id, "id": reading_id}
+    return {"status": "device_registered", "device_id": device_id}
 
 
 
@@ -172,31 +170,33 @@ def register_device(payload: dict):
 # IoT: Device Heartbeat / Ping
 # --------------------------
 @router.post("/iot/ping")
-def iot_ping(payload: dict):
-    device_id = payload.get("device_id")
+def iot_ping(payload: PingResponse):
+    device_id = payload.device_id
+    status = payload.status
 
     if not device_id:
         raise HTTPException(status_code=400, detail="device_id is required")
 
-    heartbeat = {
-        "device_id": device_id,
-        "timestamp": str(datetime.utcnow()),
-        "status": "online"
-    }
+    timestamp = int(time.time())  # current timestamp in seconds
 
-    # Save as alert entry for tracking device activity
+    # Save as alert entry
     db.add_alert({
-        "id": int(datetime.utcnow().timestamp()),
+        "id": timestamp,
         "device_id": device_id,
         "alert_type": "heartbeat",
         "severity": "low",
-        "message": "Device ping received",
+        "message": f"Device ping received with status '{status}'",
         "is_resolved": False,
-        "created_at": str(datetime.utcnow()),
+        "created_at": timestamp,
         "resolved_at": None
     })
 
-    return {"status": "pong", "device_id": device_id, "received": heartbeat}
+    return {
+        "status": "pong",
+        "device_id": device_id,
+        "received_status": status,
+        "timestamp": timestamp
+    }
 
 
 # -------------------------------------------------------------
