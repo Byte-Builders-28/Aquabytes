@@ -96,6 +96,23 @@ async def predict_water_quality(data: SensorData):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+@router.get("/api/v1/sensor/latest/{device_id}")
+async def get_latest_sensor_data(device_id: str):
+    readings = db.get_readings()
+    device_readings = [r for r in readings if r.get("device_id") == device_id]
+
+    if not device_readings:
+        raise HTTPException(status_code=404, detail="No readings found for device")
+
+    latest = device_readings[-1]
+
+    return {
+        "success": True,
+        "device_id": device_id,
+        "timestamp": latest["timestamp"],
+        "sensor_data": latest["sensor_data"]
+    }
+
 @router.post("/api/v1/predict/latest/{device_id}")
 async def predict_latest(device_id: str):
     try:
