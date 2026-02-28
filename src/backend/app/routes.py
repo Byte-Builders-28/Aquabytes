@@ -1,9 +1,13 @@
 from fastapi import APIRouter, HTTPException, Query, status
 from datetime import datetime
 from typing import List, Dict, Optional
-from app.models import SensorData, PingResponse
+from app.models import SensorData, PingResponse, RainRequest
 from ml.predictor import WaterQualityPredictor
 from utils.json import JSONDB
+
+from utils.rainfall_engine import get_RTWH
+
+from utils.location import get_location_details, get_address_from_coords
 
 import time
 
@@ -37,6 +41,45 @@ async def health_check():
         "total_readings": len(readings),
         "total_alerts": len(alerts)
     }
+
+
+@router.get("/geocode")
+def geocode(
+    address: Optional[str] = Query(None, description="Address string for forward geocoding"),
+    lat: Optional[float] = Query(None, description="Latitude for reverse geocoding"),
+    lng: Optional[float] = Query(None, description="Longitude for reverse geocoding")
+):
+    """
+    Single geocode route:
+    - Forward mode: provide 'address' → returns coordinates
+    - Reverse mode: provide 'lat' and 'lng' → returns address details
+    """
+    if address:
+        result = get_location_details(address)
+        if not result:
+            raise HTTPException(status_code=404, detail=f"Could not find coordinates for: {address}")
+        return {"mode": "forward", **result}
+    
+    if lat is not None and lng is not None:
+        result = get_address_from_coords(lat, lng)
+        if not result:
+            raise HTTPException(status_code=404, detail=f"Could not find address for coordinates: {lat}, {lng}")
+        return {"mode": "reverse", **result}
+    
+    raise HTTPException(status_code=400, detail="Provide either 'address' or 'lat' and 'lng'")
+
+@router.post("/api/v1/get_res")
+def get_recommendation(req: RainRequest):
+    area_m2 = req.area * 0.092903
+    result = get_RTWH(
+        area_m2=area_m2,
+        population=req.population,
+        budget=req.budget,
+        state=req.state,
+        city=req.city,
+        rooftype=req.roof
+    )
+    return result
 
 # -------------------------------------------------------------
 # PREDICT AND STORE READING
