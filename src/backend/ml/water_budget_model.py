@@ -3,7 +3,7 @@ import pickle
 import numpy as np
 import os
 
-MODEL_PATH = "backend/ml/models/water_risk_model.pkl"
+MODEL_PATH = "ml/models/water_risk_model.pkl"
 
 # Load model at import
 if not os.path.exists(MODEL_PATH):

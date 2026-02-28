@@ -1,7 +1,7 @@
 import pandas as pd
 
 # Load the dataset
-df = pd.read_csv("ml/datasets/data/rainfall.csv")
+df = pd.read_csv("ml/datasets/rainfall.csv")
 
 # Filter only the "Mean" row
 mean_row_df = df[df.iloc[:, 2] == "Mean"]  # assuming the 3rd column (index 2) has "Mean"/"Standard d"/"Coefficient"

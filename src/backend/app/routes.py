@@ -43,38 +43,6 @@ async def health_check():
     }
 
 
-@router.get("/api/v1/system/summary")
-async def system_summary():
-    readings = db.get_readings()
-    alerts = db.get_alerts()
-
-    total = len(readings)
-    unique = len(set(r["device_id"] for r in readings))
-    active = sum(1 for a in alerts if not a["is_resolved"])
-
-    avg_wqi = 0
-    dist = {}
-
-    if total:
-        last100 = readings[-100:]
-        avg_wqi = sum(r["prediction"]["wqi"] for r in last100) / len(last100)
-
-        for r in last100:
-            cat = r["prediction"]["wqi_category"]
-            dist[cat] = dist.get(cat, 0) + 1
-
-    return {
-        "success": True,
-        "statistics": {
-            "total_readings": total,
-            "unique_devices": unique,
-            "active_alerts": active,
-            "average_wqi": round(avg_wqi, 2),
-            "wqi_distribution": dist
-        }
-    }
-
-
 @router.delete("/api/v1/system/data")
 async def clear_system_data():
     db.clear_all()

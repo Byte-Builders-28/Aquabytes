@@ -39,7 +39,6 @@ class RainRequest(BaseModel):
     budget: Optional[float] = None
 
 class WaterInput(BaseModel):
-    uuid: str
     state: str
     city: str
     tank_cap: int
