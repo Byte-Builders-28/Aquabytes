@@ -12,7 +12,14 @@
                 "location": "Rooftop Tank 1",
                 "device_id": "ESP32_001"
             },
-            "timestamp": 1763835144
+            "timestamp": 1763835144,
+            "prediction": {
+                "wqi": 88.29,
+                "wqi_category": "Good",
+                "microbial_risk_level": "Low",
+                "heavy_metal_risk_level": "Low",
+                "irrigation_suitable": true
+            }
         }
     ],
     "alerts": []

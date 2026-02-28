@@ -28,3 +28,22 @@ class PingResponse(BaseModel):
     status: str
     device_id: str
 
+class RainRequest(BaseModel):
+    area: float
+    population: int
+    state: str
+    city: str
+    roof: str
+
+    # Optional fields
+    budget: Optional[float] = None
+
+class WaterInput(BaseModel):
+    state: str
+    city: str
+    tank_cap: int
+    current_level: int
+    population: int
+    avg_need: Optional[int] = 135
+
+
