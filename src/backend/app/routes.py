@@ -53,7 +53,7 @@ async def clear_system_data():
 # GEOLOCATION
 # ============================================================
 
-@router.get("/geocode")
+@router.get("/api/v1/geocode")
 def geocode(
     address: Optional[str] = Query(None),
     lat: Optional[float] = Query(None),
@@ -78,8 +78,8 @@ def geocode(
 # RAINWATER HARVESTING
 # ============================================================
 
-@router.post("/api/v1/rtwh/recommendation")
-def rainwater_recommendation(req: RainRequest):
+@router.post("/api/v1/rtwh/feasibility")
+def rainwater_feasibility(req: RainRequest):
     area_m2 = req.area * 0.092903
 
     return get_RTWH(

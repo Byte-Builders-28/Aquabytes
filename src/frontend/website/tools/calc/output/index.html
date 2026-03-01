@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>AquaBytes - Rainwater System Recommendation</title>
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+			rel="stylesheet" />
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+			rel="stylesheet" />
+		<style>
+			body {
+				background: #f5f7fb;
+				font-family: "Segoe UI", sans-serif;
+			}
+			.card {
+				border: none;
+				border-radius: 20px;
+				box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+				margin-top: 40px;
+			}
+			.card-header {
+				background: linear-gradient(90deg, #4facfe, #00f2fe);
+				color: white;
+				font-weight: 600;
+				font-size: 1.6rem;
+				border-top-left-radius: 20px;
+				border-top-right-radius: 20px;
+				text-align: center;
+			}
+			.stat-card {
+				background: #fff;
+				border-radius: 15px;
+				box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+				padding: 1.2rem;
+				display: flex;
+				align-items: center;
+				gap: 1rem;
+				transition: transform 0.2s, box-shadow 0.2s;
+			}
+			.stat-card:hover {
+				transform: translateY(-5px);
+				box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+			}
+			.stat-icon {
+				font-size: 2rem;
+				color: #0d6efd;
+				min-width: 40px;
+				text-align: center;
+			}
+			.stat-info {
+				flex-grow: 1;
+			}
+			.stat-title {
+				font-weight: 600;
+				color: #495057;
+				font-size: 0.95rem;
+			}
+			.stat-value {
+				font-weight: 700;
+				font-size: 1.2rem;
+			}
+			.card-footer {
+				text-align: center;
+				background: #f8f9fa;
+				border-top: none;
+				padding: 1rem 0;
+				border-bottom-left-radius: 20px;
+				border-bottom-right-radius: 20px;
+			}
+			/* Badge styles */
+			.badge {
+				border-radius: 0.6rem;
+				font-weight: 600;
+			}
+			.badge-success {
+				background-color: #28a745 !important;
+			}
+			.badge-warning {
+				background-color: #ffc107 !important;
+				color: #212529 !important;
+			}
+			.badge-danger {
+				background-color: #dc3545 !important;
+			}
+		</style>
+	</head>
+	<body>
+		<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+			<div class="container">
+				<a class="navbar-brand fw-bold" href="/">AquaBytes</a>
+				<button
+					class="navbar-toggler"
+					data-bs-toggle="collapse"
+					data-bs-target="#navMenu">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navMenu">
+					<ul class="navbar-nav ms-auto">
+						<li class="nav-item">
+							<a class="nav-link active" href="/tools/">Citizen Tool</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/stat/">Analytics</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/resource/">Resources</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/download/">Download</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<div class="container">
+			<div class="card">
+				<div class="card-header">Rainwater System Recommendation</div>
+				<div class="card-body">
+					<!-- Score Badge -->
+					<div class="mb-4 text-center">
+						<div class="mb-2"><strong>Feasibility Score</strong></div>
+						<span id="scoreBadge" class="badge fs-5 px-3 py-2 badge-success"
+							>85%</span
+						>
+						<div
+							class="mt-2"
+							id="system_type"
+							style="font-weight: 600; font-size: 1.2rem">
+							Storage System
+						</div>
+						<small id="reason" class="text-muted">
+							Rainwater supply can meet most of the demand.
+						</small>
+					</div>
+
+					<!-- Tank Info -->
+					<div class="stat-card mb-3">
+						<i class="bi bi-droplet-half stat-icon"></i>
+						<div class="stat-info">
+							<div class="stat-title">Recommended Tank Size</div>
+							<div class="stat-value" id="tank_size">20,000 L</div>
+						</div>
+					</div>
+
+					<!-- Water Stats Grid -->
+					<div class="row g-3 mt-2">
+						<div class="col-md-4">
+							<div class="stat-card">
+								<i class="bi bi-cloud-rain stat-icon"></i>
+								<div class="stat-info">
+									<div class="stat-title">Monthly Total Supply</div>
+									<div class="stat-value text-success" id="supply">
+										120,000 L
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="stat-card">
+								<i class="bi bi-house-door stat-icon"></i>
+								<div class="stat-info">
+									<div class="stat-title">Monthly Total Demand</div>
+									<div class="stat-value text-primary" id="demand">
+										100,000 L
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="stat-card">
+								<i class="bi bi-exclamation-triangle stat-icon"></i>
+								<div class="stat-info">
+									<div class="stat-title">Monthly Unmet Demand</div>
+									<div class="stat-value text-danger" id="unmet">5,000 L</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="stat-card">
+								<i class="bi bi-bar-chart-line stat-icon"></i>
+								<div class="stat-info">
+									<div class="stat-title">Reliability</div>
+									<div class="stat-value text-success" id="reliability">
+										95%
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="stat-card">
+								<i class="bi bi-water stat-icon"></i>
+								<div class="stat-info">
+									<div class="stat-title">Groundwater Recharge Potential</div>
+									<div class="stat-value text-primary" id="gw_recharge">
+										25,000 L
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="stat-card">
+								<i class="bi bi-currency-rupee stat-icon"></i>
+								<div class="stat-info">
+									<div class="stat-title">Estimated Cost</div>
+									<div class="stat-value text-warning" id="cost_estimate">
+										₹68,000
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="card-footer">
+					<a href="../" class="btn btn-primary btn-lg">Back to Input</a>
+				</div>
+			</div>
+		</div>
+
+		<script>
+			document.addEventListener("DOMContentLoaded", () => {
+				const resultRaw = localStorage.getItem("rainwaterResult");
+				if (!resultRaw) return;
+
+				const result = JSON.parse(resultRaw);
+
+				// Score badge
+				const score = result.score;
+				const scoreBadge = document.getElementById("scoreBadge");
+				scoreBadge.textContent = score.toFixed(1) + "%";
+				if (score) {
+					scoreBadge.classList.remove("badge-success");
+				}
+				if (score >= 70) {
+					scoreBadge.classList.add("badge-success");
+				} else if (score >= 40) {
+					scoreBadge.classList.add("badge-warning");
+				} else {
+					scoreBadge.classList.add("badge-danger");
+				}
+
+				// Other values
+				document.getElementById("system_type").textContent = result.system_type;
+				document.getElementById("reason").textContent = result.reason;
+				document.getElementById("tank_size").textContent =
+					result.tank_size.toLocaleString() + " L";
+				document.getElementById("supply").textContent =
+					(result.supply / 12).toLocaleString() + " L";
+				document.getElementById("demand").textContent =
+					(result.demand / 12).toLocaleString() + " L";
+				document.getElementById("unmet").textContent =
+					(result.unmet / 12).toLocaleString() + " L";
+				document.getElementById("reliability").textContent =
+					(result.reliability * 100).toFixed(1) + "%";
+				document.getElementById("gw_recharge").textContent =
+					result.gw_recharge.toLocaleString() + " L";
+				document.getElementById("cost_estimate").textContent =
+					"₹" + Math.round(result.cost_estimate).toLocaleString();
+
+				localStorage.removeItem("rainwaterResult");
+			});
+		</script>
+	</body>
+</html>
