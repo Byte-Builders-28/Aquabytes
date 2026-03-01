@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>404 - Page Not Found</title>
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+			rel="stylesheet" />
+		<style>
+			:root {
+				--blue: #0d6efd;
+				--aqua: #20c997;
+				--danger: #dc3545;
+				--warning: #ffc107;
+				--bg-light: #f5f7fa;
+			}
+
+			body {
+				background: var(--bg-light);
+				display: flex;
+				flex-direction: column;
+				min-height: 100vh;
+				font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+			}
+
+			/* Navbar */
+			.navbar-brand {
+				font-weight: 700;
+			}
+
+			/* 404 Card */
+			.error-card {
+				text-align: center;
+				background: white;
+				border-radius: 14px;
+				padding: 3rem 2rem;
+				box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+				max-width: 500px;
+				margin: auto;
+				margin-top: 5rem;
+			}
+
+			.error-code {
+				font-size: 6rem;
+				font-weight: 700;
+				color: var(--blue);
+				animation: bounce 1s infinite alternate;
+			}
+
+			.error-msg {
+				font-size: 1.25rem;
+				margin-bottom: 1.5rem;
+			}
+
+			.btn-back {
+				background: var(--aqua);
+				color: white;
+				font-weight: 500;
+				padding: 0.5rem 1.5rem;
+				border-radius: 6px;
+				text-decoration: none;
+			}
+
+			.btn-back:hover {
+				background: #17c07d;
+				color: white;
+			}
+
+			/* Bounce animation for 404 number */
+			@keyframes bounce {
+				0% {
+					transform: translateY(0);
+				}
+				100% {
+					transform: translateY(-10px);
+				}
+			}
+
+			/* Footer */
+			footer {
+				background: #212529;
+				color: #aaa;
+				padding: 1rem 0;
+				margin-top: auto;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- Navbar -->
+		<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+			<div class="container">
+				<a class="navbar-brand" href="/">AquaBytes</a>
+				<button
+					class="navbar-toggler"
+					type="button"
+					data-bs-toggle="collapse"
+					data-bs-target="#navMenu">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navMenu">
+					<ul class="navbar-nav ms-auto">
+						<li class="nav-item">
+							<a class="nav-link active" href="/tools/">Citizen Tool</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/stat/">Analytics</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/resource/">Resources</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/download/">Download</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+		<!-- 404 Card -->
+		<div class="error-card">
+			<div class="error-code">404</div>
+			<div class="error-msg">Oops! Page not found.</div>
+			<p class="text-muted mb-4">
+				The page you are looking for might have been removed or is temporarily
+				unavailable.
+			</p>
+			<a href="/" class="btn-back">Go Back Home</a>
+		</div>
+
+		<!-- Footer -->
+		<footer>&copy; 2025 Universal Rainwater Harvesting Portal</footer>
+
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+	</body>
+</html>

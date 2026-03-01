@@ -1,0 +1,27 @@
+body {
+	background-color: #f8f9fa;
+}
+.hero {
+	height: 60vh;
+	background: linear-gradient(rgba(0, 123, 255, 1), rgba(0, 123, 255, 0.6)),
+		url("https://images.unsplash.com/photo-1568145675395-66a2eda0c6d7?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+			no-repeat center/cover;
+	color: white;
+	padding: 5rem 1rem;
+	text-align: center;
+}
+.kpi {
+	height: 40vh;
+}
+.card {
+	background: linear-gradient(135deg, #ffffff, #e9f2ff);
+}
+.card-icon {
+	font-size: 2rem;
+	margin-bottom: 0.5rem;
+}
+footer {
+	background: #212529;
+	color: #aaa;
+	padding: 1rem 0;
+}

@@ -1,0 +1,171 @@
+:root {
+	--blue: #0d6efd;
+	--aqua: #1fdc5b;
+	--danger: #dc3545;
+	--warning: #ffc107;
+	--bg-light: #f5f5f5;
+}
+
+body {
+	overflow-x: hidden;
+	background: var(--bg-light);
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Spinner overlay */
+#spinnerOverlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(255, 255, 255, 0.7);
+	display: none;
+	justify-content: center;
+	align-items: center;
+	z-index: 1050;
+}
+.spinner-box {
+	text-align: center;
+}
+
+/* HERO */
+.hero {
+	background: linear-gradient(rgba(13, 110, 253, 1), rgba(13, 110, 253, 0.65));
+	color: white;
+	padding: 3rem 0;
+}
+.hero-card {
+	background: rgba(255, 255, 255, 0.082);
+	backdrop-filter: blur(6px);
+	border-radius: 14px;
+	padding: 2rem;
+}
+.wqi {
+	font-size: 3.8rem;
+	font-weight: 700;
+	color: var(--aqua);
+}
+.wqi.bad {
+	color: var(--danger);
+}
+.wqi.warn {
+	color: var(--warning);
+}
+.section-title {
+	font-size: 0.7rem;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	opacity: 0.85;
+}
+
+/* PARAMETERS */
+.param {
+	padding-left: 1rem;
+	border-left: 4px solid rgba(255, 255, 255, 0.35);
+}
+.param.safe {
+	border-color: var(--aqua);
+}
+.param.warn {
+	border-color: var(--warning);
+}
+.param.danger {
+	border-color: var(--danger);
+}
+.param-label {
+	font-size: 0.65rem;
+	opacity: 0.85;
+	text-transform: uppercase;
+}
+.param-value {
+	font-size: 1.25rem;
+	font-weight: 600;
+}
+
+/* MAIN */
+.main {
+	margin-top: -2rem;
+	min-height: 100vh;
+}
+.surface {
+	background: white;
+	border-radius: 14px;
+	padding: 2rem;
+	border: 1px solid #e5e7eb;
+}
+
+/* TABS */
+.nav-tabs {
+	border-bottom: 1px solid #e5e7eb;
+}
+.nav-tabs .nav-link {
+	border: none;
+	color: #6c757d;
+	font-weight: 500;
+}
+.nav-tabs .nav-link.active {
+	color: var(--blue);
+	border-bottom: 3px solid var(--blue);
+	background: transparent;
+}
+
+/* ALERTS */
+.alert {
+	border-radius: 10px;
+	margin-bottom: 0.5rem;
+}
+
+/* BADGES */
+.badge {
+	font-size: 0.8rem;
+	width: 15px;
+	height: 15px;
+	padding: 0;
+}
+
+/* FOOTER */
+footer {
+	background: #212529;
+	color: #aaa;
+	padding: 1rem 0;
+	text-align: center;
+}
+/* Hero action buttons – simple white boxes */
+#changeDeviceBtn,
+#recalcBtn {
+	background: #ffffff;
+	color: #212529;
+	border: none;
+	border-radius: 12px;
+	padding: 8px 16px;
+	font-size: 0.8rem;
+	font-weight: 600;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	transition: transform 0.15s ease, box-shadow 0.15s ease;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Hover – subtle lift only */
+#changeDeviceBtn:hover,
+#recalcBtn:hover {
+	transform: translateY(-1px);
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Active – press */
+#changeDeviceBtn:active,
+#recalcBtn:active {
+	transform: translateY(0);
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+	#changeDeviceBtn,
+	#recalcBtn {
+		width: 100%;
+	}
+}

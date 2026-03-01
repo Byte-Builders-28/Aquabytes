@@ -4,8 +4,8 @@ from sklearn.tree import DecisionTreeClassifier
 import pickle
 import os
 
-DATA_PATH = "../../../../data_engineering/data/synthetic_training.csv"
-MODEL_DIR = "ML_models"
+DATA_PATH = "ml/datasets/synthetic_training.csv"
+MODEL_DIR = "models"
 MODEL_PATH = os.path.join(MODEL_DIR, "water_risk_model.pkl")
 
 def train_and_save_model():
