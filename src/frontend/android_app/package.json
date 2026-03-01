@@ -1,0 +1,44 @@
+{
+  "name": "aquabyte",
+  "version": "1.0.0",
+  "main": "expo-router/entry",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
+    "web": "expo start --web"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "@react-native-async-storage/async-storage": "2.1.2",
+    "@react-native-picker/picker": "^2.11.1",
+    "country-state-city": "^3.2.1",
+    "expo": "~53.0.22",
+    "expo-camera": "~16.1.11",
+    "expo-constants": "~17.1.7",
+    "expo-image": "~2.4.0",
+    "expo-image-picker": "~16.1.4",
+    "expo-linear-gradient": "~14.1.5",
+    "expo-linking": "~7.1.7",
+    "expo-localization": "~16.1.6",
+    "expo-router": "~5.1.6",
+    "expo-status-bar": "~2.2.3",
+    "expo-system-ui": "~5.0.11",
+    "i18next": "^25.5.2",
+    "i18next-browser-languagedetector": "^8.2.0",
+    "i18next-http-backend": "^3.0.2",
+    "react": "19.0.0",
+    "react-i18next": "^15.7.3",
+    "react-native": "^0.79.5",
+    "react-native-chart-kit": "^6.12.0",
+    "react-native-localize": "^3.5.2",
+    "react-native-safe-area-context": "5.4.0",
+    "react-native-screens": "~4.11.1",
+    "react-native-svg": "15.11.2",
+    "react-native-webview": "13.13.5"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.0"
+  },
+  "private": true
+}

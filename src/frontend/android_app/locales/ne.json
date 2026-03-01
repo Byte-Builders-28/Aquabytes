@@ -1,0 +1,95 @@
+{
+	"startCard": {
+		"button": "सुरु गर्नुहोस्",
+		"aroundYou": "तपाईंको वरिपरि",
+		"consultant": "सल्लाहकार",
+		"contribution": "योगदान"
+	},
+	"feasibility": {
+		"title": "सक्षमताको स्कोर",
+		"of": "१०० मध्ये",
+		"labels": {
+			"excellent": "उत्कृष्ट",
+			"great": "राम्ररी",
+			"average": "औसत",
+			"poor": "कमजोर",
+			"veryPoor": "अत्यन्त कमजोर"
+		}
+	},
+	"summaryCard": {
+		"header": "सारांश",
+		"cost": "खर्च",
+		"groundwater": "भू–पानी बाँकी",
+		"systemType": "सिस्टम प्रकार",
+		"tankSize": "ट्याङ्की आकार",
+		"reason": "कारण",
+		"moreInfo": "थप जानकारी",
+		"units": {
+			"meter": "मि",
+			"squareMeter": "L",
+			"currency": "₹"
+		}
+	},
+	"question": {
+		"selectOption": "एउटा विकल्प चयन गर्नुहोस्..."
+	},
+	"getInput": {
+		"header": "पानी संकलन",
+		"errorFill": "⚠️ कृपया \"{{field}}\" भर्नुहोस् अघि बढ्न।"
+	},
+	"questions": {
+		"state": {
+			"text": "तपाईंको राज्य चयन गर्नुहोस्"
+		},
+		"city": {
+			"text": "शहर चयन गर्नुहोस्"
+		},
+		"area": {
+			"text": "छानोको अनुमानित क्षेत्रफल (sq ft)",
+			"placeholder": "छानो क्षेत्र भर्नुहोस्"
+		},
+		"population": {
+			"text": "घरमा कति व्यक्ति बस्छन्?",
+			"placeholder": "संख्या भर्नुहोस्"
+		},
+		"roof": {
+			"text": "कृपया छानोको प्रकार बताउनुहोस्।",
+			"options": {
+				"concrete": "कंक्रीट (RCC)",
+				"cementTiles": "सिमेन्ट टाइल्स",
+				"clayTiles": "माटोका टाइल्स",
+				"metalSheet": "धातु पाना",
+				"giSheet": "GI पाना",
+				"asbestos": "एस्बेस्टस पाना",
+				"slate": "स्लेट",
+				"stone": "ढुंगा पाना",
+				"corrugated": "हल्लिने पाना",
+				"thatched": "घाँसको छानो",
+				"plastic": "प्लास्टिक पाना / PVC",
+				"glass": "गिलास",
+				"green": "हरियो छानो (वनस्पति सहित)",
+				"other": "अन्य"
+			}
+		},
+		"budget": {
+			"text": "तपाईंको अधिकतम बजेट (INR)",
+			"placeholder": "बजेट भर्नुहोस्"
+		}
+	},
+	"waterRiskCheck": {
+		"header": "वाइज वाटर हब",
+		"tankCapacity": "ट्याङ्की क्षमता (L)",
+		"currentWaterLevel": "हालको पानीको स्तर (L)",
+		"checkRisk": "जोखिम जाँच गर्नुहोस्",
+		"checking": "जाँच भइरहेको छ...",
+		"surveyRequired": "सर्वेक्षण आवश्यक",
+		"surveyMessage": "राज्य, शहर, र जनसंख्या क्यास गर्न प्रारम्भिक सर्वेक्षण पूरा गर्नुहोस्।",
+		"inputMissing": "इनपुट छैन",
+		"inputMissingMsg": "कृपया ट्याङ्की क्षमता र हालको पानीको स्तर भर्नुहोस्।",
+		"tips": "सुझावहरू:",
+		"last5DaysRain": "पछिल्ला ५ दिनको वर्षा (मि.मी.)",
+		"alert": "भू–पानी कम। ५ दिनदेखि वर्षा छैन",
+		"safe": "पानीको स्तर सुरक्षित छ",
+		"suggestion": "सुझावित कार्यहरू"
+	}
+}

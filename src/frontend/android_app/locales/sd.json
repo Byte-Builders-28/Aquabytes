@@ -1,0 +1,95 @@
+{
+	"startCard": {
+		"button": "شروع ڪريو",
+		"aroundYou": "توهان جي چوڌاري",
+		"consultant": "صلاحڪار",
+		"contribution": "حصو"
+	},
+	"feasibility": {
+		"title": "قابليت جو اسڪور",
+		"of": "جو 100",
+		"labels": {
+			"excellent": "تمام بهترين",
+			"great": "عظيم",
+			"average": "اوچتو",
+			"poor": "گهٽ",
+			"veryPoor": "تمام گهٽ"
+		}
+	},
+	"summaryCard": {
+		"header": "خلاصو",
+		"cost": "قيمت",
+		"groundwater": "زميني پاڻي باقي",
+		"systemType": "سسٽم جو قسم",
+		"tankSize": "ٽينڪ جي سائيز",
+		"reason": "سبب",
+		"moreInfo": "وڌيڪ معلومات",
+		"units": {
+			"meter": "ميٽر",
+			"squareMeter": "L",
+			"currency": "₹"
+		}
+	},
+	"question": {
+		"selectOption": "هڪ آپشن چونڊيو..."
+	},
+	"getInput": {
+		"header": "پاڻي جو گڏ ڪرڻ",
+		"errorFill": "⚠️ مهرباني ڪري \"{{field}}\" ڀريو کان اڳ جاري رکو."
+	},
+	"questions": {
+		"state": {
+			"text": "پنجي رياست چونڊيو"
+		},
+		"city": {
+			"text": "پنجي شهر چونڊيو"
+		},
+		"area": {
+			"text": "تقريباً ڇت جو علائقو ڪيترو آهي؟ (sq ft)",
+			"placeholder": "علائقو داخل ڪريو"
+		},
+		"population": {
+			"text": "گهر ۾ ڪيترا ماڻهو رهن ٿا؟",
+			"placeholder": "لوڪ شامل ڪريو"
+		},
+		"roof": {
+			"text": "مهرباني ڪري ڇت جو قسم چونڊيو.",
+			"options": {
+				"concrete": "ڪانڪريٽ (RCC)",
+				"cementTiles": "سيمينٽ ٽائلون",
+				"clayTiles": "مٽيءَ جون ٽائلون",
+				"metalSheet": "دات جي شيٽ",
+				"giSheet": "GI شيٽ",
+				"asbestos": "ايزبيسٽوس شيٽ",
+				"slate": "اسليٽ",
+				"stone": "پٿر جي تختي",
+				"corrugated": "ڪوريگيٽڊ شيٽ",
+				"thatched": "ٿاچ ٿيل",
+				"plastic": "پلاسٽڪ / PVC شيٽ",
+				"glass": "شيشو",
+				"green": "سڀز ڇت (vegetated)",
+				"other": "ٻيو"
+			}
+		},
+		"budget": {
+			"text": "توهان جو وڌ ۾ وڌ بجيٽ ڇا آهي؟ (INR)",
+			"placeholder": "بجيٽ داخل ڪريو"
+		}
+	},
+	"waterRiskCheck": {
+		"header": "وايز واٽر هب",
+		"tankCapacity": "ٽينڪ جي گنجائش (L)",
+		"currentWaterLevel": "موجوده پاڻي جي سطح (L)",
+		"checkRisk": "رسڪ چيڪ ڪريو",
+		"checking": "چيڪ ڪري رهيا آهيون...",
+		"surveyRequired": "سروي ضروري",
+		"surveyMessage": "مھرباني ڪري شروعاتي سروي مڪمل ڪريو ته جيئن توهان جي رياست، شهر ۽ آبادي محفوظ ٿئي.",
+		"inputMissing": "داخل ٿيل ڊيٽا غائب آهي",
+		"inputMissingMsg": "مهرباني ڪري ٽينڪ جي گنجائش ۽ موجوده پاڻي جي سطح ٻئي داخل ڪريو.",
+		"tips": "مشورا:",
+		"last5DaysRain": "پنج ڏينهن جو مينهن (mm)",
+		"alert": "زميني پاڻي گهٽ. 5 ڏينهن مينهن ناهي",
+		"safe": "پاڻي جا سطح محفوظ آهن",
+		"suggestion": "سفارش ڪيل قدم"
+	}
+}

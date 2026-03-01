@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 		try {
 			const res = await fetch(
-				`https://aquabytes.onrender.com/api/v1/devices/${device_id}/water-quality/predict`,
+				`https://aquabytes.onrender.com/api/v1/devices/${currentDeviceId}/water-quality/predict`,
 				{
 					method: "POST",
 					headers: { accept: "application/json" },

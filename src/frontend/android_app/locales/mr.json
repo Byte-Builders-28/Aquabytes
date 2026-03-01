@@ -1,0 +1,95 @@
+{
+	"startCard": {
+		"button": "सुरू करा",
+		"aroundYou": "तुमच्या सभोवताल",
+		"consultant": "सल्लागार",
+		"contribution": "योगदान"
+	},
+	"feasibility": {
+		"title": "अमल क्षमता स्कोअर",
+		"of": "100 पैकी",
+		"labels": {
+			"excellent": "उत्कृष्ट",
+			"great": "छान",
+			"average": "सरासरी",
+			"poor": "कमजोर",
+			"veryPoor": "अत्यंत कमजोर"
+		}
+	},
+	"summaryCard": {
+		"header": "सारांश",
+		"cost": "खर्च",
+		"groundwater": "भूजल शिल्लक",
+		"systemType": "सिस्टम प्रकार",
+		"tankSize": "टँक आकार",
+		"reason": "कारण",
+		"moreInfo": "अधिक माहिती",
+		"units": {
+			"meter": "मी",
+			"squareMeter": "L",
+			"currency": "₹"
+		}
+	},
+	"question": {
+		"selectOption": "एक पर्याय निवडा..."
+	},
+	"getInput": {
+		"header": "पाणी साठवण",
+		"errorFill": "⚠️ कृपया \"{{field}}\" भरण्यापूर्वी पुढे जा."
+	},
+	"questions": {
+		"state": {
+			"text": "आपला राज्य निवडा"
+		},
+		"city": {
+			"text": "शहर निवडा"
+		},
+		"area": {
+			"text": "अंदाजे छत क्षेत्रफळ (sq ft)",
+			"placeholder": "छताचे क्षेत्रफळ भरा"
+		},
+		"population": {
+			"text": "घरातील लोकसंख्या किती आहे?",
+			"placeholder": "लोकसंख्या भरा"
+		},
+		"roof": {
+			"text": "कृपया छताचा प्रकार नमूद करा.",
+			"options": {
+				"concrete": "काँक्रीट (RCC)",
+				"cementTiles": "सिमेंट टाईल्स",
+				"clayTiles": "मातीच्या टाईल्स",
+				"metalSheet": "मेटल शीट",
+				"giSheet": "GI शीट",
+				"asbestos": "अॅस्बेस्टस शीट",
+				"slate": "स्लेट",
+				"stone": "दगडी शीट",
+				"corrugated": "गारगटेड शीट",
+				"thatched": "थॅचड",
+				"plastic": "प्लास्टिक शीट / PVC",
+				"glass": "काचेचे",
+				"green": "हिरवे छत (वनस्पतीयुक्त)",
+				"other": "इतर"
+			}
+		},
+		"budget": {
+			"text": "आपला जास्तीत जास्त बजेट (INR)",
+			"placeholder": "बजेट भरा"
+		}
+	},
+	"waterRiskCheck": {
+		"header": "वाइज वॉटर हब",
+		"tankCapacity": "टँक क्षमता (L)",
+		"currentWaterLevel": "सद्याचे पाणी स्तर (L)",
+		"checkRisk": "जोखीम तपासा",
+		"checking": "तपासणी सुरू आहे...",
+		"surveyRequired": "सर्व्हे आवश्यक",
+		"surveyMessage": "राज्य, शहर आणि लोकसंख्या कॅश करण्यासाठी प्रारंभिक सर्व्हे पूर्ण करा.",
+		"inputMissing": "इनपुट नाही",
+		"inputMissingMsg": "कृपया टँक क्षमता आणि सध्याचे पाणी स्तर भरा.",
+		"tips": "टीप्स:",
+		"last5DaysRain": "मागील 5 दिवसांची पर्जन्यमान (मिमी)",
+		"alert": "भूजल कमी. 5 दिवसांपासून पाऊस नाही",
+		"safe": "पाण्याचे स्तर सुरक्षित आहेत",
+		"suggestion": "सल्ला"
+	}
+}

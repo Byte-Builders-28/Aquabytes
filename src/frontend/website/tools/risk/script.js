@@ -208,11 +208,6 @@ async function handleSubmit(e) {
 			avg_need,
 		};
 
-		if (sensor) {
-			payload.ph = sensor.ph;
-			payload.tds = sensor.tds;
-		}
-
 		const response = await fetch(
 			"https://aquabytes.onrender.com/api/v1/water-risk/ESP32_001",
 			{

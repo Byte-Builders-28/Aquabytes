@@ -1,0 +1,95 @@
+{
+	"startCard": {
+		"button": "ଆରମ୍ଭ କରନ୍ତୁ",
+		"aroundYou": "ଆପଣଙ୍କ ଚାରିପାଖ",
+		"consultant": "ପରାମର୍ଶଦାତା",
+		"contribution": "ଅବଦାନ"
+	},
+	"feasibility": {
+		"title": "ଯୋଗ୍ୟତା ସ୍କୋର",
+		"of": "୧୦୦ ମଧ୍ୟରୁ",
+		"labels": {
+			"excellent": "ଅତି ଭଲ",
+			"great": "ଭଲ",
+			"average": "ସାଧାରଣ",
+			"poor": "ଦୁର୍ବଳ",
+			"veryPoor": "ଅତି ଦୁର୍ବଳ"
+		}
+	},
+	"summaryCard": {
+		"header": "ସାରାଂଶ",
+		"cost": "ଖର୍ଚ୍ଚ",
+		"groundwater": "ଭୂଗତଳଜଳ ବାକି",
+		"systemType": "ସିଷ୍ଟମ୍ ପ୍ରକାର",
+		"tankSize": "ଟ୍ୟାଙ୍କ ଆକାର",
+		"reason": "କାରଣ",
+		"moreInfo": "ଅଧିକ ସୂଚନା",
+		"units": {
+			"meter": "ମି",
+			"squareMeter": "L",
+			"currency": "₹"
+		}
+	},
+	"question": {
+		"selectOption": "ଏକ ବିକଳ୍ପ ଚୟନ କରନ୍ତୁ..."
+	},
+	"getInput": {
+		"header": "ଜଳ ସଂଗ୍ରହ",
+		"errorFill": "⚠️ କୃପୟା \"{{field}}\" ପୂରଣ କରନ୍ତୁ ପୂର୍ବରୁ ଆଗକୁ ଯିବା ପାଇଁ।"
+	},
+	"questions": {
+		"state": {
+			"text": "ଆପଣଙ୍କ ରାଜ୍ୟ ଚୟନ କରନ୍ତୁ"
+		},
+		"city": {
+			"text": "ସହର ଚୟନ କରନ୍ତୁ"
+		},
+		"area": {
+			"text": "ଆନୁମାନିକ ଛାତ ଅଞ୍ଚଳ (sq ft)",
+			"placeholder": "ଛାତ ଅଞ୍ଚଳ ପ୍ରବେଶ କରନ୍ତୁ"
+		},
+		"population": {
+			"text": "ଘରେ କତେ ଲୋକ ବସନ୍ତି?",
+			"placeholder": "ସଂଖ୍ୟା ପ୍ରବେଶ କରନ୍ତୁ"
+		},
+		"roof": {
+			"text": "ଦୟାକରି ଛାତ ପ୍ରକାର ଦିଅନ୍ତୁ।",
+			"options": {
+				"concrete": "କଂକ୍ରିଟ୍ (RCC)",
+				"cementTiles": "ସିମେଣ୍ଟ ଟାଇଲ୍",
+				"clayTiles": "ମାଟି ଟାଇଲ୍",
+				"metalSheet": "ଧାତୁ ପତ୍ର",
+				"giSheet": "GI ପତ୍ର",
+				"asbestos": "ଏସବେସ୍ଟସ ପତ୍ର",
+				"slate": "ସ୍ଲେଟ୍",
+				"stone": "ପାଥର ପତ୍ର",
+				"corrugated": "ତାଲା ହେଉଥିବା ପତ୍ର",
+				"thatched": "ଘାସ ଛାତ",
+				"plastic": "ପ୍ଲାସ୍ଟିକ୍ ପତ୍ର / PVC",
+				"glass": "ଗ୍ଲାସ୍",
+				"green": "ସବୁଜ ଛାତ (ସଜୀବପଦାର୍ଥ ସହିତ)",
+				"other": "ଅନ୍ୟ"
+			}
+		},
+		"budget": {
+			"text": "ଆପଣଙ୍କର ସର୍ବାଧିକ ବଜେଟ୍ (INR)",
+			"placeholder": "ବଜେଟ୍ ପ୍ରବେଶ କରନ୍ତୁ"
+		}
+	},
+	"waterRiskCheck": {
+		"header": "ବାଇଜ୍ ଓଟର୍ ହବ୍",
+		"tankCapacity": "ଟ୍ୟାଙ୍କ କ୍ଷମତା (L)",
+		"currentWaterLevel": "ବର୍ତ୍ତମାନର ପାଣି ପରିମାଣ (L)",
+		"checkRisk": "ଜୋଖିମ ଯାଞ୍ଚ କରନ୍ତୁ",
+		"checking": "ଯାଞ୍ଚ ଚାଲୁଛି...",
+		"surveyRequired": "ସର୍ଭେ ଆବଶ୍ୟକ",
+		"surveyMessage": "ରାଜ୍ୟ, ସହର, ଏବଂ ଜନସଂଖ୍ୟା କ୍ୟାଶ୍ କରିବା ପାଇଁ ପ୍ରାରମ୍ଭିକ ସର୍ଭେ ସମ୍ପୂର୍ଣ୍ଣ କରନ୍ତୁ।",
+		"inputMissing": "ଇନପୁଟ୍ ନାହିଁ",
+		"inputMissingMsg": "ଦୟାକରି ଟ୍ୟାଙ୍କ କ୍ଷମତା ଏବଂ ବର୍ତ୍ତମାନର ପାଣି ପରିମାଣ ପ୍ରବେଶ କରନ୍ତୁ।",
+		"tips": "ସୁପାରିଶଗୁଡିକ:",
+		"last5DaysRain": "ଗତ ୫ ଦିନର ବର୍ଷା (ମି.ମି.)",
+		"alert": "ଭୂଗତଳଜଳ କମ୍। ୫ ଦିନ ଧରି ବର୍ଷା ନାହିଁ",
+		"safe": "ପାଣି ସ୍ତର ସୁରକ୍ଷିତ ଅଛି",
+		"suggestion": "ସୁପାରିଶିତ କାର୍ଯ୍ୟ"
+	}
+}

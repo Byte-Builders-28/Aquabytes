@@ -1,0 +1,95 @@
+{
+	"startCard": {
+		"button": "GET STARTED",
+		"aroundYou": "AROUND YOU",
+		"consultant": "CONSULTANT",
+		"contribution": "CONTRIBUTION"
+	},
+	"feasibility": {
+		"title": "FEASIBILITY SCORE",
+		"of": "of 100",
+		"labels": {
+			"excellent": "Excellent",
+			"great": "Great",
+			"average": "Average",
+			"poor": "Poor",
+			"veryPoor": "Very Poor"
+		}
+	},
+	"summaryCard": {
+		"header": "Summary",
+		"cost": "COST",
+		"groundwater": "Groundwater Recharge Potential",
+		"systemType": "System Type",
+		"tankSize": "Tank Size",
+		"reason": "Reason",
+		"moreInfo": "MORE INFO",
+		"units": {
+			"meter": "m",
+			"squareMeter": "L",
+			"currency": "₹"
+		}
+	},
+	"question": {
+		"selectOption": "Select an option..."
+	},
+	"getInput": {
+		"header": "Water Harvesting",
+		"errorFill": "⚠️ Please fill out \"{{field}}\" before continuing."
+	},
+	"questions": {
+		"state": {
+			"text": "Select your State"
+		},
+		"city": {
+			"text": "Select your City"
+		},
+		"area": {
+			"text": "What is the approximate roof area? (sq ft)",
+			"placeholder": "Enter roof area"
+		},
+		"population": {
+			"text": "How many people live in the household?",
+			"placeholder": "Enter number of people"
+		},
+		"roof": {
+			"text": "Please specify the roof type.",
+			"options": {
+				"concrete": "Concrete (RCC)",
+				"cementTiles": "Cement Tiles",
+				"clayTiles": "Clay Tiles",
+				"metalSheet": "Metal Sheet",
+				"giSheet": "GI Sheet",
+				"asbestos": "Asbestos Sheet",
+				"slate": "Slate",
+				"stone": "Stone Slab",
+				"corrugated": "Corrugated Sheet",
+				"thatched": "Thatched",
+				"plastic": "Plastic Sheet / PVC",
+				"glass": "Glass",
+				"green": "Green Roof (vegetated)",
+				"other": "Other"
+			}
+		},
+		"budget": {
+			"text": "What is your maximum budget? (in INR)",
+			"placeholder": "Enter budget"
+		}
+	},
+	"waterRiskCheck": {
+		"header": "Wise Water HUB",
+		"tankCapacity": "Tank Capacity (L)",
+		"currentWaterLevel": "Current Water Level (L)",
+		"checkRisk": "Check Risk",
+		"checking": "Checking...",
+		"surveyRequired": "Survey Required",
+		"surveyMessage": "Please complete the initial survey first to cache your state, city, and population.",
+		"inputMissing": "Input Missing",
+		"inputMissingMsg": "Please enter both tank capacity and current water level.",
+		"tips": "Tips:",
+		"last5DaysRain": "Last 5 Days Rainfall (mm)",
+		"alert": "Less Groundwater. No Rain for 5 days",
+		"safe": "Water levels are safe",
+		"suggestion": "Suggested Actions"
+	}
+}

@@ -1,0 +1,39 @@
+{
+	"expo": {
+		"scheme": "aquabyte",
+		"name": "AquaByte",
+		"slug": "ByteSIH",
+		"version": "1.0.1",
+		"orientation": "portrait",
+		"icon": "./assets/icon.png",
+		"userInterfaceStyle": "light",
+		"newArchEnabled": true,
+		"splash": {
+			"image": "./assets/splash-icon.png",
+			"resizeMode": "contain",
+			"backgroundColor": "#ffffff"
+		},
+		"ios": {
+			"supportsTablet": true
+		},
+		"android": {
+			"adaptiveIcon": {
+				"foregroundImage": "./assets/adaptive-icon.png",
+				"backgroundColor": "#ffffff"
+			},
+			"edgeToEdgeEnabled": true,
+			"permissions": ["CAMERA", "INTERNET"],
+			"package": "com.bytebuilders.aquabyte"
+		},
+		"web": {
+			"favicon": "./assets/favicon.png"
+		},
+		"plugins": ["expo-router", "expo-localization"],
+		"extra": {
+			"router": {},
+			"eas": {
+				"projectId": "ec927ee9-4b55-4985-96a2-5656220e2f20"
+			}
+		}
+	}
+}
