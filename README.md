@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="src/frontend/android_app/assets/splash-icon.png" alt="AquaBytes Logo" width="120" />
+<img src="src/frontend/android_app/assets/splash-icon.png" alt="AquaBytes Logo" width="150" />
 
 # 💧 AquaBytes
 
@@ -36,11 +36,11 @@ The platform pairs a **live IoT sensor network** (ESP32-based) with **ML-driven 
 
 <div align="center">
 
-| Home Screen | Feasibility Results |
+| Home Screen | Tools Available |
 |:-----------:|:-------------------:|
 | ![Home](src/frontend/screenshots/Screenshot%202026-03-01%20231556.png) | ![Feasibility](src/frontend/screenshots/Screenshot%202026-03-01%20231702.png) |
 
-| Water Quality / WQI | Water Hub (Risk Intelligence) |
+| Water Quality / WQI | IOT in Action |
 |:-------------------:|:-----------------------------:|
 | ![WQI](src/frontend/screenshots/Screenshot%202026-03-01%20232241.png) | ![WaterHub](src/frontend/screenshots/Screenshot%202026-03-01%20232603.png) |
 
