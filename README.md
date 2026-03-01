@@ -44,7 +44,7 @@ The platform pairs a **live IoT sensor network** (ESP32-based) with **ML-driven 
 |:-------------------:|:-----------------------------:|
 | ![WQI](src/frontend/screenshots/Screenshot%202026-03-01%20232241.png) | ![WaterHub](src/frontend/screenshots/Screenshot%202026-03-01%20232603.png) |
 
-| App in Action | IoT Sensor Live Feed |
+| App in Action | Possitive Response as Result |
 |:-------------:|:--------------------:|
 | ![App1](src/frontend/screenshots/WhatsApp%20Image%202026-03-01%20at%2011.21.58%20PM.jpeg) | ![App2](<src/frontend/screenshots/WhatsApp%20Image%202026-03-01%20at%2011.21.58%20PM%20(1).jpeg>) |
 
