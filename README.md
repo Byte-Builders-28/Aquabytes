@@ -299,7 +299,7 @@ AquaBytes/
 |----------|-----|
 | 🌐 Website | [aquabytes.netlify.app](https://aquabytes.netlify.app/) |
 | ▶️ YouTube Demo | [youtube.com/watch?v=g-DGNQVrjl8](https://www.youtube.com/watch?v=g-DGNQVrjl8) |
-| ⚙️ Backend API Docs | [evs-aquabytes.onrender.com/docs](https://evs-aquabytes.onrender.com/docs) |
+| ⚙️ Backend API Docs | [aquabytes.onrender.com/docs](https://evs-aquabytes.onrender.com/docs) |
 
 ---
 
