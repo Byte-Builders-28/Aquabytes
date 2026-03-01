@@ -38,7 +38,9 @@
 				display: flex;
 				align-items: center;
 				gap: 1rem;
-				transition: transform 0.2s, box-shadow 0.2s;
+				transition:
+					transform 0.2s,
+					box-shadow 0.2s;
 			}
 			.stat-card:hover {
 				transform: translateY(-5px);
@@ -245,17 +247,17 @@
 				document.getElementById("system_type").textContent = result.system_type;
 				document.getElementById("reason").textContent = result.reason;
 				document.getElementById("tank_size").textContent =
-					result.tank_size.toLocaleString() + " L";
+					Math.round(result.tank_size).toLocaleString() + " L";
 				document.getElementById("supply").textContent =
-					(result.supply / 12).toLocaleString() + " L";
+					Math.round(result.supply / 12).toLocaleString() + " L";
 				document.getElementById("demand").textContent =
-					(result.demand / 12).toLocaleString() + " L";
+					Math.round(result.demand / 12).toLocaleString() + " L";
 				document.getElementById("unmet").textContent =
-					(result.unmet / 12).toLocaleString() + " L";
+					Math.round(result.unmet / 12).toLocaleString() + " L";
 				document.getElementById("reliability").textContent =
 					(result.reliability * 100).toFixed(1) + "%";
 				document.getElementById("gw_recharge").textContent =
-					result.gw_recharge.toLocaleString() + " L";
+					Math.round(result.gw_recharge).toLocaleString() + " L";
 				document.getElementById("cost_estimate").textContent =
 					"₹" + Math.round(result.cost_estimate).toLocaleString();
 

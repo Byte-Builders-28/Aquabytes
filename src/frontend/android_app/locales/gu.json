@@ -1,0 +1,95 @@
+{
+	"startCard": {
+		"button": "પ્રારંભ કરો",
+		"aroundYou": "તમારા આસપાસ",
+		"consultant": "પરામર્શદાતા",
+		"contribution": "યોગદાન"
+	},
+	"feasibility": {
+		"title": "યોગ્યતા સ્કોર",
+		"of": "100 માંથી",
+		"labels": {
+			"excellent": "અતિ ઉત્તમ",
+			"great": "ઉત્તમ",
+			"average": "સરેરાશ",
+			"poor": "નબળું",
+			"veryPoor": "ખૂબ નબળું"
+		}
+	},
+	"summaryCard": {
+		"header": "સારાંશ",
+		"cost": "ખર્ચ",
+		"groundwater": "地下 પાણી બાકી",
+		"systemType": "પ્રણાળી પ્રકાર",
+		"tankSize": "ટાંકિ કદ",
+		"reason": "કારણ",
+		"moreInfo": "વધુ માહિતી",
+		"units": {
+			"meter": "મી",
+			"squareMeter": "L",
+			"currency": "₹"
+		}
+	},
+	"question": {
+		"selectOption": "કૃપા કરીને વિકલ્પ પસંદ કરો..."
+	},
+	"getInput": {
+		"header": "પાણી એકત્રિત કરવું",
+		"errorFill": "⚠️ કૃપા કરીને \"{{field}}\" ભરો પછી આગળ વધો."
+	},
+	"questions": {
+		"state": {
+			"text": "તમારું રાજ્ય પસંદ કરો"
+		},
+		"city": {
+			"text": "તમારું શહેર પસંદ કરો"
+		},
+		"area": {
+			"text": "આપની છતનો અંદાજિત વિસ્તાર શું છે? (વર્ગ ફૂટ)",
+			"placeholder": "છતનો વિસ્તાર દાખલ કરો"
+		},
+		"population": {
+			"text": "ઘરમાં કેટલા લોકો રહે છે?",
+			"placeholder": "લોકોની સંખ્યા દાખલ કરો"
+		},
+		"roof": {
+			"text": "કૃપા કરીને છતનો પ્રકાર સ્પષ્ટ કરો.",
+			"options": {
+				"concrete": "કાંક્રીટ (RCC)",
+				"cementTiles": "સિમેન્ટ ટાઇલ્સ",
+				"clayTiles": "માટી ટાઇલ્સ",
+				"metalSheet": "ધાતની શીટ",
+				"giSheet": "GI શીટ",
+				"asbestos": "એસ્બેસ્ટસ શીટ",
+				"slate": "સ્લેટ",
+				"stone": "પથ્થર",
+				"corrugated": "વેવાયેલી શીટ",
+				"thatched": "છાપરું / ઘાસ",
+				"plastic": "પ્લાસ્ટિક શીટ / PVC",
+				"glass": "કાચ",
+				"green": "લીલું છત (વનસ્પતિ)",
+				"other": "અન્ય"
+			}
+		},
+		"budget": {
+			"text": "તમારો મહત્તમ બજેટ કેટલો છે? (INR માં)",
+			"placeholder": "બજેટ દાખલ કરો"
+		}
+	},
+	"waterRiskCheck": {
+		"header": "વાઈઝ વોટર હબ",
+		"tankCapacity": "ટાંકિ ક્ષમતા (L)",
+		"currentWaterLevel": "વર્તમાન પાણીનું સ્તર (L)",
+		"checkRisk": "જોખમ તપાસો",
+		"checking": "તપાસાઈ રહી છે...",
+		"surveyRequired": "સર્વે જરૂરી",
+		"surveyMessage": "કૃપા કરીને પ્રથમ સર્વે પૂર્ણ કરો જેથી રાજ્ય, શહેર અને વસ્તી કેશ થાય.",
+		"inputMissing": "ઇનપુટ મિસિંગ",
+		"inputMissingMsg": "કૃપા કરીને ટાંકિ ક્ષમતા અને વર્તમાન પાણીનું સ્તર બંને દાખલ કરો.",
+		"tips": "સૂચનો:",
+		"last5DaysRain": "પછલી 5 દિવસની વરસાદ (mm)",
+		"alert": "地下 પાણી ઓછી. 5 દિવસથી વરસાદ નથી",
+		"safe": "પાણીનું સ્તર સલામત છે",
+		"suggestion": "સૂચવેલ કાર્યો"
+	}
+}

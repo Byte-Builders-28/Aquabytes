@@ -1,0 +1,95 @@
+{
+	"startCard": {
+		"button": "ᱟᱢᱟᱹᱨᱮ ᱵᱟᱹᱜᱟ",
+		"aroundYou": "ᱥᱟᱱᱛᱤᱫᱤ ᱡᱟᱹᱜ",
+		"consultant": "ᱵᱟᱢᱟ ᱨᱟᱭᱟᱹᱛᱤ",
+		"contribution": "ᱵᱟᱹᱜᱟ"
+	},
+	"feasibility": {
+		"title": "ᱨᱟᱭᱟᱹᱛᱤ ᱥᱟᱹᱨ",
+		"of": "ᱫᱟᱦ 100 ᱞᱤᱠᱤ",
+		"labels": {
+			"excellent": "ᱠᱟᱹᱛᱮᱫ",
+			"great": "ᱨᱟᱹᱛᱮ",
+			"average": "ᱥᱟᱹᱨᱟᱹᱜ",
+			"poor": "ᱠᱷᱚᱸᱦᱚ",
+			"veryPoor": "ᱥᱟᱨᱮᱛ ᱠᱷᱚᱸᱦᱚ"
+		}
+	},
+	"summaryCard": {
+		"header": "ᱟᱹᱨᱟᱹᱛᱤ",
+		"cost": "ᱟᱨᱮᱯᱮᱢ",
+		"groundwater": "ᱯᱟᱨᱟᱢ ᱥᱟᱹᱨᱮ",
+		"systemType": "ᱥᱮᱱᱥᱟ ᱛᱟᱹᱯ",
+		"tankSize": "ᱛᱮᱱᱠ ᱵᱟᱹᱜᱟ",
+		"reason": "ᱫᱟᱦ",
+		"moreInfo": "ᱢᱚᱨ ᱟᱹᱨᱟᱹᱛ",
+		"units": {
+			"meter": "ᱢᱮᱴᱮᱨ",
+			"squareMeter": "L",
+			"currency": "₹"
+		}
+	},
+	"question": {
+		"selectOption": "ᱵᱟᱛᱟ ᱯᱟᱹᱲᱤ..."
+	},
+	"getInput": {
+		"header": "ᱵᱟᱹᱜᱟ ᱦᱟᱞᱤᱥ",
+		"errorFill": "⚠️ \"{{field}}\" ᱵᱟᱹᱨᱟ ᱠᱷᱮᱭ ᱨᱟᱹᱛ ᱯᱟᱹᱛᱟ"
+	},
+	"questions": {
+		"state": {
+			"text": "ᱟᱹᱨᱥᱟᱹᱜ ᱯᱟᱹᱲᱤ"
+		},
+		"city": {
+			"text": "ᱟᱹᱨᱮᱯᱮᱢ ᱯᱟᱹᱲᱤ"
+		},
+		"area": {
+			"text": "ᱥᱟᱹᱨᱟᱹ ᱦᱟᱹᱨ ᱞᱟᱛ ᱯᱟᱹᱲᱤ (sq ft)",
+			"placeholder": "ᱵᱟᱹᱲᱤ ᱯᱟᱹᱛᱟ"
+		},
+		"population": {
+			"text": "ᱨᱟᱢ ᱟᱹᱜᱟ ᱡᱮ ᱨᱮᱫᱟ ᱵᱟᱹᱜᱟ?",
+			"placeholder": "ᱡᱮᱛᱮᱫᱟ ᱯᱟᱹᱲᱤ"
+		},
+		"roof": {
+			"text": "ᱵᱟᱹᱲᱤ ᱞᱟᱛ ᱯᱟᱹᱲᱤ ᱠᱷᱟᱭ ᱵᱮᱵᱟ",
+			"options": {
+				"concrete": "ᱠᱟᱹᱱᱠᱨᱮᱴ (RCC)",
+				"cementTiles": "ᱪᱮᱢᱮᱱᱴ ᱛᱟᱹᱯᱟ",
+				"clayTiles": "ᱪᱮᱞ ᱛᱟᱹᱯᱟ",
+				"metalSheet": "ᱢᱮᱴᱟᱞ ᱥᱷᱮᱛ",
+				"giSheet": "GI ᱥᱷᱮᱛ",
+				"asbestos": "ᱚᱯᱨᱟ ᱥᱷᱮᱛ",
+				"slate": "ᱥᱞᱟᱛ",
+				"stone": "ᱵᱟᱹᱱᱛ ᱥᱷᱮᱛ",
+				"corrugated": "ᱛᱟᱹᱨᱜᱩᱞᱟᱛᱮᱰ ᱥᱷᱮᱛ",
+				"thatched": "ᱛᱟᱹᱛᱦᱟᱹᱭ ᱥᱷᱮᱛ",
+				"plastic": "ᱯᱞᱟᱥᱴᱤᱠ ᱥᱷᱮᱛ / PVC",
+				"glass": "ᱠᱟᱹᱚᱥ",
+				"green": "ᱪᱟᱹᱝ ᱥᱷᱮᱛ (ᱵᱟᱹᱨᱮᱡᱮᱭ ᱫᱮᱣᱟᱨᱮᱹ)",
+				"other": "ᱞᱮᱰᱮ"
+			}
+		},
+		"budget": {
+			"text": "ᱥᱟᱨ ᱯᱟᱹᱲᱤ (INR)",
+			"placeholder": "ᱵᱟᱹᱲᱤ ᱯᱟᱹᱛᱟ"
+		}
+	},
+	"waterRiskCheck": {
+		"header": "ᱣᱤᱥ ᱣᱟᱛᱟᱹᱨ ᱦᱟᱵ",
+		"tankCapacity": "ᱛᱮᱱᱠ ᱵᱟᱹᱜᱟ (L)",
+		"currentWaterLevel": "ᱦᱟᱞ ᱵᱟᱹᱜᱟ ᱞᱟᱛ (L)",
+		"checkRisk": "ᱨᱟᱹᱛ ᱯᱟᱹᱲᱤ",
+		"checking": "ᱯᱟᱹᱲᱤ ᱡᱮᱯᱟ...",
+		"surveyRequired": "ᱥᱟᱹᱨᱚᱣ ᱟᱹᱭᱟᱹᱨ",
+		"surveyMessage": "ᱞᱮᱢ ᱥᱟᱹᱨᱟᱹ ᱵᱟᱹᱜᱟ, ᱟᱹᱨᱮᱯᱮᱢ ᱡᱮ ᱨᱮᱫᱟ ᱥᱟᱹᱨᱮ ᱠᱷᱟᱭ ᱟᱹᱭᱟᱹᱨ",
+		"inputMissing": "ᱯᱟᱹᱲᱤ ᱠᱷᱟᱭ ᱵᱟᱹᱜᱟ",
+		"inputMissingMsg": "ᱛᱮᱱᱠ ᱵᱟᱹᱜᱟ ᱟᱹᱨ ᱦᱟᱞ ᱵᱟᱹᱜᱟ ᱯᱟᱹᱲᱤ ᱠᱷᱮᱭ ᱵᱟᱹᱜᱟ",
+		"tips": "ᱟᱹᱨᱟᱹᱛ:",
+		"last5DaysRain": "ᱦᱟᱞ ᱫᱤᱦᱟ 5 ᱡᱮ ᱛᱟᱹᱲᱤ (mm)",
+		"alert": "ᱯᱟᱹᱲᱤ ᱠᱷᱟᱭ ᱨᱮᱫᱟ. 5 ᱡᱮ ᱦᱟᱞ ᱫᱤᱦᱟ ᱠᱷᱮᱭ ᱨᱮᱫᱟ",
+		"safe": "ᱦᱟᱞ ᱵᱟᱹᱜᱟ ᱥᱟᱹᱨᱟᱹᱜ ᱵᱟᱹᱜᱟ",
+		"suggestion": "ᱠᱷᱮᱭ ᱯᱟᱹᱲᱤ"
+	}
+}

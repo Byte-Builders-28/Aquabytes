@@ -1,0 +1,95 @@
+{
+	"startCard": {
+		"button": "ਸ਼ੁਰੂ ਕਰੋ",
+		"aroundYou": "ਤੁਹਾਡੇ ਆਲੇ-ਦੁਆਲੇ",
+		"consultant": "ਸਲਾਹਕਾਰ",
+		"contribution": "ਯੋਗਦਾਨ"
+	},
+	"feasibility": {
+		"title": "ਯੋਗਤਾ ਸਕੋਰ",
+		"of": "100 ਵਿੱਚੋਂ",
+		"labels": {
+			"excellent": "ਸ਼ਾਨਦਾਰ",
+			"great": "ਵਧੀਆ",
+			"average": "ਸਧਾਰਣ",
+			"poor": "ਕਮਜ਼ੋਰ",
+			"veryPoor": "ਬਹੁਤ ਹੀ ਕਮਜ਼ੋਰ"
+		}
+	},
+	"summaryCard": {
+		"header": "ਸਾਰ",
+		"cost": "ਖ਼ਰਚ",
+		"groundwater": "ਜ਼ਮੀਨੀ ਪਾਣੀ ਬਾਕੀ",
+		"systemType": "ਸਿਸਟਮ ਦੀ ਕਿਸਮ",
+		"tankSize": "ਟੈਂਕ ਦਾ ਆਕਾਰ",
+		"reason": "ਕਾਰਣ",
+		"moreInfo": "ਹੋਰ ਜਾਣਕਾਰੀ",
+		"units": {
+			"meter": "ਮੀਟਰ",
+			"squareMeter": "L",
+			"currency": "₹"
+		}
+	},
+	"question": {
+		"selectOption": "ਇੱਕ ਵਿਕਲਪ ਚੁਣੋ..."
+	},
+	"getInput": {
+		"header": "ਪਾਣੀ ਸੰਗ੍ਰਹਿ",
+		"errorFill": "⚠️ ਕਿਰਪਾ ਕਰਕੇ \"{{field}}\" ਭਰਨ ਤੋਂ ਪਹਿਲਾਂ ਜਾਰੀ ਰੱਖੋ।"
+	},
+	"questions": {
+		"state": {
+			"text": "ਆਪਣਾ ਰਾਜ ਚੁਣੋ"
+		},
+		"city": {
+			"text": "ਸ਼ਹਿਰ ਚੁਣੋ"
+		},
+		"area": {
+			"text": "ਲਗਭਗ ਛੱਤ ਦਾ ਖੇਤਰਫਲ (sq ft)",
+			"placeholder": "ਛੱਤ ਦਾ ਖੇਤਰਫਲ ਦਰਜ ਕਰੋ"
+		},
+		"population": {
+			"text": "ਘਰ ਵਿੱਚ ਕਿੰਨੇ ਲੋਕ ਰਹਿੰਦੇ ਹਨ?",
+			"placeholder": "ਲੋਕਾਂ ਦੀ ਗਿਣਤੀ ਦਰਜ ਕਰੋ"
+		},
+		"roof": {
+			"text": "ਕਿਰਪਾ ਕਰਕੇ ਛੱਤ ਦੀ ਕਿਸਮ ਦਰਜ ਕਰੋ।",
+			"options": {
+				"concrete": "ਕਾਂਕਰੀਟ (RCC)",
+				"cementTiles": "ਸੀਮੈਂਟ ਟਾਈਲਾਂ",
+				"clayTiles": "ਮਿੱਟੀ ਦੀਆਂ ਟਾਈਲਾਂ",
+				"metalSheet": "ਧਾਤ ਦੀ ਪਲਾਂਕ",
+				"giSheet": "GI ਪਲਾਂਕ",
+				"asbestos": "ਐਸਬੈਸਟਸ ਪਲਾਂਕ",
+				"slate": "ਪਤਥਰ ਦੀ ਪਲਾਂਕ",
+				"stone": "ਪੱਥਰ ਦੀ ਪਲਾਂਕ",
+				"corrugated": "ਲਹਿਰਦਾਰ ਪਲਾਂਕ",
+				"thatched": "ਭੁੱਜਾ ਛੱਤ",
+				"plastic": "ਪਲਾਸਟਿਕ ਪਲਾਂਕ / PVC",
+				"glass": "ਕਾਚ",
+				"green": "ਹਰੀ ਛੱਤ (ਸਾਜ਼ੀਵ ਪੌਦਿਆਂ ਦੇ ਨਾਲ)",
+				"other": "ਹੋਰ"
+			}
+		},
+		"budget": {
+			"text": "ਤੁਹਾਡਾ ਵੱਧ ਤੋਂ ਵੱਧ ਬਜਟ (INR)",
+			"placeholder": "ਬਜਟ ਦਰਜ ਕਰੋ"
+		}
+	},
+	"waterRiskCheck": {
+		"header": "ਵਾਈਜ਼ ਵਾਟਰ ਹਬ",
+		"tankCapacity": "ਟੈਂਕ ਸਮਰੱਥਾ (L)",
+		"currentWaterLevel": "ਮੌਜੂਦਾ ਪਾਣੀ ਦਾ ਪੱਧਰ (L)",
+		"checkRisk": "ਜੋਖਮ ਚੈੱਕ ਕਰੋ",
+		"checking": "ਚੈੱਕ ਕਰ ਰਿਹਾ ਹੈ...",
+		"surveyRequired": "ਸਰਵੇ ਦੀ ਲੋੜ",
+		"surveyMessage": "ਕਿਰਪਾ ਕਰਕੇ ਰਾਜ, ਸ਼ਹਿਰ ਅਤੇ ਆਬਾਦੀ ਕੈਸ਼ ਕਰਨ ਲਈ ਮੁੱਢਲਾ ਸਰਵੇ ਕਰ ਲਵੋ।",
+		"inputMissing": "ਇਨਪੁਟ ਗਾਇਬ ਹੈ",
+		"inputMissingMsg": "ਕਿਰਪਾ ਕਰਕੇ ਟੈਂਕ ਸਮਰੱਥਾ ਅਤੇ ਮੌਜੂਦਾ ਪਾਣੀ ਦਾ ਪੱਧਰ ਦਾਖਲ ਕਰੋ।",
+		"tips": "ਸਿਫ਼ਾਰਿਸ਼ਾਂ:",
+		"last5DaysRain": "ਪਿਛਲੇ 5 ਦਿਨਾਂ ਦੀ ਵਰਖਾ (ਮਿਮੀ)",
+		"alert": "ਘੱਟ ਜ਼ਮੀਨੀ ਪਾਣੀ। 5 ਦਿਨਾਂ ਤੱਕ ਵਰਖਾ ਨਹੀਂ",
+		"safe": "ਪਾਣੀ ਦੇ ਪੱਧਰ ਸੁਰੱਖਿਅਤ ਹਨ",
+		"suggestion": "ਸਿਫ਼ਾਰਿਸ਼ ਕੀਤੀਆਂ ਕਾਰਵਾਈਆਂ"
+	}
+}

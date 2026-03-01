@@ -1,0 +1,95 @@
+{
+	"startCard": {
+		"button": "शुरू करें",
+		"aroundYou": "आपके आस-पास",
+		"consultant": "सलाहकार",
+		"contribution": "योगदान"
+	},
+	"feasibility": {
+		"title": "योग्यता स्कोर",
+		"of": "100 में से",
+		"labels": {
+			"excellent": "उत्कृष्ट",
+			"great": "बहुत अच्छा",
+			"average": "औसत",
+			"poor": "कमज़ोर",
+			"veryPoor": "बहुत कमज़ोर"
+		}
+	},
+	"summaryCard": {
+		"header": "सारांश",
+		"cost": "लागत",
+		"groundwater": "भूजल",
+		"systemType": "सिस्टम प्रकार",
+		"tankSize": "टैंक का आकार",
+		"reason": "कारण",
+		"moreInfo": "अधिक जानकारी",
+		"units": {
+			"meter": "मी",
+			"squareMeter": "L",
+			"currency": "₹"
+		}
+	},
+	"question": {
+		"selectOption": "कृपया विकल्प चुनें..."
+	},
+	"getInput": {
+		"header": "जल संचयन",
+		"errorFill": "⚠️ कृपया \"{{field}}\" भरें उसके बाद आगे बढ़ें।"
+	},
+	"questions": {
+		"state": {
+			"text": "अपना राज्य चुनें"
+		},
+		"city": {
+			"text": "अपना शहर चुनें"
+		},
+		"area": {
+			"text": "आपकी छत का अनुमानित क्षेत्रफल क्या है? (वर्ग फुट)",
+			"placeholder": "छत का क्षेत्रफल दर्ज करें"
+		},
+		"population": {
+			"text": "घर में कितने लोग रहते हैं?",
+			"placeholder": "लोगों की संख्या दर्ज करें"
+		},
+		"roof": {
+			"text": "कृपया छत का प्रकार बताएं।",
+			"options": {
+				"concrete": "कंक्रीट (RCC)",
+				"cementTiles": "सीमेंट टाइल्स",
+				"clayTiles": "मिट्टी की टाइल्स",
+				"metalSheet": "धातु की चादर",
+				"giSheet": "GI शीट",
+				"asbestos": "एस्बेस्टस शीट",
+				"slate": "स्लेट",
+				"stone": "पत्थर",
+				"corrugated": "तह बनाई हुई शीट",
+				"thatched": "घास/तांगा",
+				"plastic": "प्लास्टिक शीट / PVC",
+				"glass": "कांच",
+				"green": "हरित छत (वनस्पति)",
+				"other": "अन्य"
+			}
+		},
+		"budget": {
+			"text": "आपका अधिकतम बजट कितना है? (INR में)",
+			"placeholder": "बजट दर्ज करें"
+		}
+	},
+	"waterRiskCheck": {
+		"header": "वाइज वाटर हब",
+		"tankCapacity": "टैंक की क्षमता (L)",
+		"currentWaterLevel": "वर्तमान जल स्तर (L)",
+		"checkRisk": "जोखिम जांचें",
+		"checking": "जांच हो रही है...",
+		"surveyRequired": "सर्वेक्षण आवश्यक",
+		"surveyMessage": "कृपया प्रारंभिक सर्वेक्षण पूरा करें ताकि राज्य, शहर और जनसंख्या कैश हो जाए।",
+		"inputMissing": "इनपुट गायब",
+		"inputMissingMsg": "कृपया टैंक क्षमता और वर्तमान जल स्तर दोनों दर्ज करें।",
+		"tips": "सुझाव:",
+		"last5DaysRain": "पिछले 5 दिनों की वर्षा (mm)",
+		"alert": "भूजल कम है। 5 दिनों से बारिश नहीं हुई",
+		"safe": "जल स्तर सुरक्षित है",
+		"suggestion": "सुझाए गए कार्य"
+	}
+}

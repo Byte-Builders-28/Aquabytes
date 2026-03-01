@@ -1,0 +1,95 @@
+{
+	"startCard": {
+		"button": "شروع کریں",
+		"aroundYou": "آپ کے ارد گرد",
+		"consultant": "مشیر",
+		"contribution": "حصہ"
+	},
+	"feasibility": {
+		"title": "قابلیت کا سکور",
+		"of": "100 میں سے",
+		"labels": {
+			"excellent": "بہترین",
+			"great": "عمدہ",
+			"average": "اوسط",
+			"poor": "کمزور",
+			"veryPoor": "بہت کمزور"
+		}
+	},
+	"summaryCard": {
+		"header": "خلاصہ",
+		"cost": "لاگت",
+		"groundwater": "باقی زیر زمین پانی",
+		"systemType": "سسٹم کی قسم",
+		"tankSize": "ٹینک کا سائز",
+		"reason": "وجہ",
+		"moreInfo": "مزید معلومات",
+		"units": {
+			"meter": "میٹر",
+			"squareMeter": "L",
+			"currency": "₹"
+		}
+	},
+	"question": {
+		"selectOption": "ایک آپشن منتخب کریں..."
+	},
+	"getInput": {
+		"header": "پانی کی جمع آوری",
+		"errorFill": "⚠️ جاری رکھنے کے لیے \"{{field}}\" پُر کریں۔"
+	},
+	"questions": {
+		"state": {
+			"text": "اپنا ریاست منتخب کریں"
+		},
+		"city": {
+			"text": "اپنا شہر منتخب کریں"
+		},
+		"area": {
+			"text": "آپ کی چھت کا اندازاً رقبہ کتنا ہے؟ (sq ft)",
+			"placeholder": "چھت کا رقبہ درج کریں"
+		},
+		"population": {
+			"text": "گھر میں کتنے لوگ رہتے ہیں؟",
+			"placeholder": "افراد کی تعداد درج کریں"
+		},
+		"roof": {
+			"text": "براہ کرم چھت کی قسم بتائیں۔",
+			"options": {
+				"concrete": "کنکریٹ (RCC)",
+				"cementTiles": "سیمنٹ ٹائلز",
+				"clayTiles": "مٹی کے ٹائلز",
+				"metalSheet": "دھات کی شیٹ",
+				"giSheet": "GI شیٹ",
+				"asbestos": "ایسبیسٹوس شیٹ",
+				"slate": "سلیٹ",
+				"stone": "پتھر کی پلیٹ",
+				"corrugated": "مڑھی ہوئی شیٹ",
+				"thatched": "گھاس کی چھت",
+				"plastic": "پلاسٹک / PVC شیٹ",
+				"glass": "شیشہ",
+				"green": "سبز چھت (vegetated)",
+				"other": "دیگر"
+			}
+		},
+		"budget": {
+			"text": "آپ کا زیادہ سے زیادہ بجٹ کیا ہے؟ (INR)",
+			"placeholder": "بجٹ درج کریں"
+		}
+	},
+	"waterRiskCheck": {
+		"header": "وائس واٹر ہب",
+		"tankCapacity": "ٹینک کی گنجائش (L)",
+		"currentWaterLevel": "موجودہ پانی کی سطح (L)",
+		"checkRisk": "رسک چیک کریں",
+		"checking": "چیک کیا جا رہا ہے...",
+		"surveyRequired": "سروے ضروری ہے",
+		"surveyMessage": "براہ کرم ابتدائی سروے مکمل کریں تاکہ آپ کی ریاست، شہر اور آبادی کیش کی جا سکے۔",
+		"inputMissing": "ان پٹ غائب ہے",
+		"inputMissingMsg": "براہ کرم ٹینک کی گنجائش اور موجودہ پانی کی سطح دونوں درج کریں۔",
+		"tips": "مشورے:",
+		"last5DaysRain": "گزشتہ 5 دنوں کی بارش (ملی میٹر)",
+		"alert": "زمین کا پانی کم ہے۔ 5 دن سے بارش نہیں ہوئی",
+		"safe": "پانی کی سطح محفوظ ہے",
+		"suggestion": "تجویز کردہ اقدامات"
+	}
+}

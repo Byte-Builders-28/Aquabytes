@@ -1,0 +1,95 @@
+{
+	"startCard": {
+		"button": "শুরু করুন",
+		"aroundYou": "আপনার চারপাশে",
+		"consultant": "Consultant",
+		"contribution": "উত্তরণ"
+	},
+	"feasibility": {
+		"title": "সম্ভাব্যতা স্কোর",
+		"of": "এর 100",
+		"labels": {
+			"excellent": "চমৎকার",
+			"great": "অসাধারণ",
+			"average": "গড়",
+			"poor": "খারাপ",
+			"veryPoor": "খুব খারাপ"
+		}
+	},
+	"summaryCard": {
+		"header": "সার-সংক্ষেপ",
+		"cost": "ব্যয়",
+		"groundwater": "ভূগর্ভস্থ জল",
+		"systemType": "সিস্টেমের ধরন",
+		"tankSize": "ট্যাঙ্কের আকার",
+		"reason": "কারণ",
+		"moreInfo": "আরও তথ্য",
+		"units": {
+			"meter": "m",
+			"squareMeter": "L",
+			"currency": "₹"
+		}
+	},
+	"question": {
+		"selectOption": "\nযেকোনো একটি নির্বাচন করুন"
+	},
+	"getInput": {
+		"header": "জল সংগ্রহ",
+		"errorFill": "চালিয়ে যাওয়ার আগে ⚠️ অনুগ্রহ করে \"{{field}}\" পূরণ করুন ।"
+	},
+	"questions": {
+		"state": {
+			"text": "আপনার রাজ্য নির্বাচন করুন"
+		},
+		"city": {
+			"text": "আপনার শহর নির্বাচন করুন"
+		},
+		"area": {
+			"text": "আনুমানিক ছাদ এলাকা কত? (বর্গফুট)",
+			"placeholder": "ছাদের এলাকা লিখুন"
+		},
+		"population": {
+			"text": "পরিবারে কতজন লোক বাস করে?",
+			"placeholder": "মানুষের সংখ্যা লিখুন"
+		},
+		"roof": {
+			"text": "অনুগ্রহ করে ছাদের ধরন নির্দিষ্ট করুন ।",
+			"options": {
+				"concrete": "কংক্রিট (RCC)",
+				"cementTiles": "সিমেন্ট টাইলস",
+				"clayTiles": "কাদামাটির টাইলস",
+				"metalSheet": "মেটাল শীট",
+				"giSheet": "জিআই শীট",
+				"asbestos": "অ্যাসবেস্টস শীট",
+				"slate": "স্লেট",
+				"stone": "স্টোন স্ল্যাব",
+				"corrugated": "ঢেউখেলান শীট",
+				"thatched": "",
+				"plastic": "প্লাস্টিক শীট / পিভিসি",
+				"glass": "কাঁচ",
+				"green": "সবুজ ছাদ (উদ্ভিজ্জ)",
+				"other": "অন্যান্য"
+			}
+		},
+		"budget": {
+			"text": "আপনার সর্বোচ্চ বাজেট কত? (INR-এ)",
+			"placeholder": "বাজেট লিখুন"
+		}
+	},
+	"waterRiskCheck": {
+		"header": "ওয়াইজ ওয়াটার হাব",
+		"tankCapacity": "ট্যাঙ্ক ক্যাপাসিটি (L)",
+		"currentWaterLevel": "বর্তমান জলের স্তর (L)",
+		"checkRisk": "ঝুঁকি পরীক্ষা করুন",
+		"checking": "পরীক্ষা করা হচ্ছে...",
+		"surveyRequired": "সমীক্ষা প্রয়োজন",
+		"surveyMessage": "আপনার রাজ্য, শহর এবং জনসংখ্যা ক্যাশে করতে অনুগ্রহ করে প্রথমে প্রাথমিক সমীক্ষাটি সম্পূর্ণ করুন ।",
+		"inputMissing": "ইনপুট অনুপস্থিত",
+		"inputMissingMsg": "অনুগ্রহ করে ট্যাঙ্কের ক্ষমতা এবং বর্তমান পানির স্তর উভয়ই লিখুন ।",
+		"tips": "পরামর্শ:",
+		"last5DaysRain": "গত ৫ দিনের বৃষ্টিপাত (মিমি)",
+		"alert": "ভূগর্ভস্থ পানি কম । ৫ দিন ধরে বৃষ্টি নেই",
+		"safe": "পানির স্তর নিরাপদ",
+		"suggestion": "প্রস্তাবিত পদক্ষেপ"
+	}
+}
