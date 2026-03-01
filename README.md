@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="src/frontend/android_app/assets/logo.png" alt="AquaBytes Logo" width="120" />
+<img src="src/frontend/android_app/assets/splash-icon.png" alt="AquaBytes Logo" width="120" />
 
 # 💧 AquaBytes
 
