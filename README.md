@@ -38,15 +38,15 @@ The platform pairs a **live IoT sensor network** (ESP32-based) with **ML-driven 
 
 | Home Screen | Tools Available |
 |:-----------:|:-------------------:|
-| ![Home](src/frontend/screenshots/Screenshot%202026-03-01%20231556.png) | ![Feasibility](src/frontend/screenshots/Screenshot%202026-03-01%20231702.png) |
+| ![Home](screenshots/Screenshot%202026-03-01%20231556.png) | ![Feasibility](screenshots/Screenshot%202026-03-01%20231702.png) |
 
 | Water Quality / WQI | IOT in Action |
 |:-------------------:|:-----------------------------:|
-| ![WQI](src/frontend/screenshots/Screenshot%202026-03-01%20232241.png) | ![WaterHub](src/frontend/screenshots/Screenshot%202026-03-01%20232603.png) |
+| ![WQI](screenshots/Screenshot%202026-03-01%20232241.png) | ![WaterHub](screenshots/Screenshot%202026-03-01%20232603.png) |
 
 | App in Action | Possitive Response as Result |
 |:-------------:|:--------------------:|
-| ![App1](src/frontend/screenshots/WhatsApp%20Image%202026-03-01%20at%2011.21.58%20PM.jpeg) | ![App2](<src/frontend/screenshots/WhatsApp%20Image%202026-03-01%20at%2011.21.58%20PM%20(1).jpeg>) |
+| ![App1](screenshots/WhatsApp%20Image%202026-03-01%20at%2011.21.58%20PM.jpeg) | ![App2](<screenshots/WhatsApp%20Image%202026-03-01%20at%2011.21.58%20PM%20(1).jpeg>) |
 
 </div>
 
