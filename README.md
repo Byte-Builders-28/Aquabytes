@@ -310,6 +310,19 @@ AquaBytes/
 - 🔬 **Department:** Central Ground Water Board (CGWB)
 - 📂 **Problem Category:** Software — Smart Automation
 
+
+---
+
+## 👥 Contributors
+_Listed in alphabetical order._
+
+- **Anirban Sarkar** – [@AnirbansarkarS](https://github.com/AnirbansarkarS)
+- **Darsan Ghosh** – [@XpolioN2005](https://github.com/XpolioN2005)
+- **Rishabh Chatterjee** – [@Ri2004](https://github.com/Ri2004)
+- **Rishika Jha** – [@jha-rishika](https://github.com/jha-rishika)
+- **Sandipan Das** – [@Sandipan-developer](https://github.com/Sandipan-developer)
+- **Soumabha Mahapatra** – [@TechEruption](https://github.com/TechEruption)
+
 ---
 
 ## 🤝 Contributing
@@ -323,6 +336,7 @@ Contributions are welcome! Please read [CODE_of_CONTACT.md](CODE_of_CONTACT.md) 
 5. Open a Pull Request
 
 ---
+
 
 ## 📄 License
 
