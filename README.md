@@ -256,9 +256,9 @@ npx serve src/frontend/website
 
 ```
 AquaBytes/
-├── IOT/
-│   └── EVS_Project.ino           # ESP32 sensor firmware
 ├── src/
+│   ├── IOT/
+│   │   └── EVS_Project.ino       # ESP32 sensor firmware
 │   ├── backend/
 │   │   ├── main.py               # FastAPI entry point
 │   │   ├── requirements.txt
